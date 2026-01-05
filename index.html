@@ -469,7 +469,9 @@
         // Load JSON data
         async function loadData() {
             try {
-                const response = await fetch('data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy.json');
+                // Use relative path that works with GitHub Pages
+                const jsonPath = './data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy.json';
+                const response = await fetch(jsonPath);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -478,7 +480,7 @@
             } catch (error) {
                 document.getElementById('tree').innerHTML = 
                     `<div class="error">Error loading data: ${error.message}<br>
-                    Make sure the JSON file is in the data directory and you're running a local server.</div>`;
+                    Make sure the JSON file is in the data directory.</div>`;
                 console.error('Error loading data:', error);
             }
         }
