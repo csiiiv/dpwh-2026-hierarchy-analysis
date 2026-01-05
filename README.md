@@ -27,6 +27,8 @@ This will create `data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy.json
 
 ### View in Web Browser
 
+#### Option 1: Local Development
+
 1. Start a simple HTTP server:
 ```bash
 python3 -m http.server 8000
@@ -38,6 +40,20 @@ http://localhost:8000
 ```
 
 3. The interactive hierarchy explorer will load automatically.
+
+#### Option 2: GitHub Pages (Deployed)
+
+The project is configured for GitHub Pages deployment. Once enabled in your repository settings:
+
+1. Go to repository Settings → Pages
+2. Select source branch (usually `main`)
+3. Select folder (usually `/ (root)`)
+4. The site will be available at:
+```
+https://csiiiv.github.io/dpwh-2026-hierarchy-analysis/
+```
+
+The interactive hierarchy explorer will load automatically from the deployed JSON file.
 
 ## Features
 
