@@ -1,7 +1,6 @@
 # Data files (too large for git)
 data/*.xlsx
 data/*.csv
-data/*.json
 
 # Python
 __pycache__/
