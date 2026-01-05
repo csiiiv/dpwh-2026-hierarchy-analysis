@@ -61,35 +61,6 @@
             flex-wrap: wrap;
         }
 
-        .search-box {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .search-box::before {
-            content: "🔍";
-            position: absolute;
-            left: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-
         .btn {
             padding: 0.75rem 1.5rem;
             border: none;
@@ -248,11 +219,6 @@
             margin: 1rem 0;
         }
 
-        .highlight {
-            background: #fff59d;
-            padding: 0 2px;
-            border-radius: 2px;
-        }
 
         @media (max-width: 768px) {
             .header h1 {
@@ -293,14 +259,10 @@
     </div>
 
     <div class="controls">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search by name, amount, or description...">
-        </div>
         <button class="btn btn-primary" onclick="expandAll()">Expand All</button>
         <button class="btn btn-secondary" onclick="collapseAll()">Collapse All</button>
         <div class="stats">
             <span id="nodeCount">Nodes: 0</span>
-            <span id="visibleCount">Visible: 0</span>
         </div>
     </div>
 
@@ -327,42 +289,17 @@
             }).format(num);
         }
 
-        // Highlight search term in text
-        function highlightText(text, term) {
-            if (!term) return text;
-            const regex = new RegExp(`(${term})`, 'gi');
-            return text.replace(regex, '<span class="highlight">$1</span>');
-        }
-
-        // Check if node matches search
-        function matchesSearch(node, term) {
-            if (!term) return true;
-            const lowerTerm = term.toLowerCase();
-            const value = (node.value || '').toLowerCase();
-            const description = (node.description || '').toLowerCase();
-            const amount = formatNumber(node.amount).toLowerCase();
-            return value.includes(lowerTerm) || 
-                   description.includes(lowerTerm) || 
-                   amount.includes(lowerTerm);
-        }
-
         // Render a node
-        function renderNode(node, level = 0, parentMatches = true) {
+        function renderNode(node, level = 0) {
             nodeCount++;
             const hasChildren = node.children && node.children.length > 0;
             const nodeId = `node-${nodeCount}`;
-            const nodeMatches = matchesSearch(node, searchTerm);
-            const shouldShow = parentMatches || nodeMatches;
-            
-            if (shouldShow) {
-                visibleCount++;
-            }
 
             let html = `
-                <div class="tree-node ${!hasChildren ? 'no-children' : ''}" data-node-id="${nodeId}" ${shouldShow ? '' : 'style="display: none;"'}>
+                <div class="tree-node ${!hasChildren ? 'no-children' : ''}" data-node-id="${nodeId}">
                     <div class="node-header ${hasChildren ? '' : 'no-children'}" onclick="toggleNode('${nodeId}')">
                         ${hasChildren ? '<span class="toggle collapsed"></span>' : '<span class="toggle"></span>'}
-                        <span class="node-title">${highlightText(node.value || '', searchTerm)}</span>
+                        <span class="node-title">${node.value || ''}</span>
                         ${node.amount !== null && node.amount !== undefined ? 
                             `<span class="node-amount">₱${formatNumber(node.amount)}</span>` : ''}
                     </div>
@@ -371,7 +308,7 @@
             if (node.description) {
                 html += `
                     <div class="node-description">
-                        ${highlightText(node.description, searchTerm)}
+                        ${node.description}
                     </div>
                 `;
             }
@@ -379,7 +316,7 @@
             if (hasChildren) {
                 html += `<div class="node-content" id="${nodeId}-content">`;
                 node.children.forEach(child => {
-                    html += renderNode(child, level + 1, parentMatches && nodeMatches);
+                    html += renderNode(child, level + 1);
                 });
                 html += `</div>`;
             }
@@ -437,13 +374,9 @@
             });
         }
 
-        // Search functionality with optimization
-        function performSearch() {
-            const inputValue = document.getElementById('searchInput').value.trim();
-            searchTerm = inputValue;
+        // Render the hierarchy tree
+        function renderTree() {
             nodeCount = 0;
-            visibleCount = 0;
-            
             const tree = document.getElementById('tree');
             
             if (!hierarchyData) {
@@ -451,75 +384,15 @@
                 return;
             }
 
-            // Render tree if not cached, or if search is cleared
-            if (!fullTreeHTML || !searchTerm) {
-                let html = '';
-                hierarchyData.forEach(root => {
-                    html += renderNode(root);
-                });
-                fullTreeHTML = html;
-                tree.innerHTML = html;
-            } else {
-                // Use cached HTML
-                tree.innerHTML = fullTreeHTML;
-                // Re-count nodes
-                nodeCount = document.querySelectorAll('.tree-node').length;
-            }
+            let html = '';
+            hierarchyData.forEach(root => {
+                html += renderNode(root);
+            });
             
-            // Filter nodes by search term
-            if (searchTerm) {
-                const lowerTerm = searchTerm.toLowerCase();
-                const allNodes = document.querySelectorAll('.tree-node');
-                
-                // First pass: mark nodes that match
-                const matchingNodes = new Set();
-                allNodes.forEach(nodeEl => {
-                    const titleEl = nodeEl.querySelector('.node-title');
-                    const descEl = nodeEl.querySelector('.node-description');
-                    const amountEl = nodeEl.querySelector('.node-amount');
-                    
-                    const titleText = (titleEl ? titleEl.textContent : '').toLowerCase();
-                    const descText = (descEl ? descEl.textContent : '').toLowerCase();
-                    const amountText = (amountEl ? amountEl.textContent : '').toLowerCase();
-                    
-                    if (titleText.includes(lowerTerm) || descText.includes(lowerTerm) || amountText.includes(lowerTerm)) {
-                        matchingNodes.add(nodeEl);
-                        // Also show all ancestors
-                        let parent = nodeEl.parentElement;
-                        while (parent && parent.classList.contains('tree-node')) {
-                            matchingNodes.add(parent);
-                            parent = parent.parentElement;
-                        }
-                        // And all descendants
-                        nodeEl.querySelectorAll('.tree-node').forEach(desc => {
-                            matchingNodes.add(desc);
-                        });
-                    }
-                });
-                
-                // Second pass: show/hide nodes
-                allNodes.forEach(nodeEl => {
-                    if (matchingNodes.has(nodeEl)) {
-                        nodeEl.style.display = '';
-                        visibleCount++;
-                    } else {
-                        nodeEl.style.display = 'none';
-                    }
-                });
-                
-                expandAll();
-            } else {
-                // Show all nodes
-                const allNodes = document.querySelectorAll('.tree-node');
-                allNodes.forEach(nodeEl => {
-                    nodeEl.style.display = '';
-                });
-                visibleCount = nodeCount;
-            }
+            tree.innerHTML = html;
             
             // Update stats
             document.getElementById('nodeCount').textContent = `Nodes: ${nodeCount}`;
-            document.getElementById('visibleCount').textContent = `Visible: ${visibleCount}`;
         }
 
         // Load JSON data
@@ -532,7 +405,7 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 hierarchyData = await response.json();
-                performSearch();
+                renderTree();
             } catch (error) {
                 document.getElementById('tree').innerHTML = 
                     `<div class="error">Error loading data: ${error.message}<br>
@@ -540,30 +413,6 @@
                 console.error('Error loading data:', error);
             }
         }
-
-        // Debounced search function
-        function debounceSearch(func, wait) {
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(searchTimeout);
-                    func(...args);
-                };
-                clearTimeout(searchTimeout);
-                searchTimeout = setTimeout(later, wait);
-            };
-        }
-
-        // Optimized search with debouncing
-        const debouncedSearch = debounceSearch(performSearch, 300);
-
-        // Initialize
-        document.getElementById('searchInput').addEventListener('input', debouncedSearch);
-        document.getElementById('searchInput').addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                clearTimeout(searchTimeout);
-                performSearch();
-            }
-        });
 
         // Load data on page load
         loadData();
