@@ -315,6 +315,8 @@
         let nodeCount = 0;
         let visibleCount = 0;
         let searchTerm = '';
+        let searchTimeout = null;
+        let fullTreeHTML = null;
 
         // Format number with commas
         function formatNumber(num) {
@@ -435,35 +437,89 @@
             });
         }
 
-        // Search functionality
+        // Search functionality with optimization
         function performSearch() {
-            searchTerm = document.getElementById('searchInput').value.trim();
+            const inputValue = document.getElementById('searchInput').value.trim();
+            searchTerm = inputValue;
             nodeCount = 0;
             visibleCount = 0;
             
             const tree = document.getElementById('tree');
-            tree.innerHTML = '';
             
             if (!hierarchyData) {
                 tree.innerHTML = '<div class="error">No data loaded</div>';
                 return;
             }
 
-            let html = '';
-            hierarchyData.forEach(root => {
-                html += renderNode(root);
-            });
-
-            tree.innerHTML = html;
+            // Render tree if not cached, or if search is cleared
+            if (!fullTreeHTML || !searchTerm) {
+                let html = '';
+                hierarchyData.forEach(root => {
+                    html += renderNode(root);
+                });
+                fullTreeHTML = html;
+                tree.innerHTML = html;
+            } else {
+                // Use cached HTML
+                tree.innerHTML = fullTreeHTML;
+                // Re-count nodes
+                nodeCount = document.querySelectorAll('.tree-node').length;
+            }
+            
+            // Filter nodes by search term
+            if (searchTerm) {
+                const lowerTerm = searchTerm.toLowerCase();
+                const allNodes = document.querySelectorAll('.tree-node');
+                
+                // First pass: mark nodes that match
+                const matchingNodes = new Set();
+                allNodes.forEach(nodeEl => {
+                    const titleEl = nodeEl.querySelector('.node-title');
+                    const descEl = nodeEl.querySelector('.node-description');
+                    const amountEl = nodeEl.querySelector('.node-amount');
+                    
+                    const titleText = (titleEl ? titleEl.textContent : '').toLowerCase();
+                    const descText = (descEl ? descEl.textContent : '').toLowerCase();
+                    const amountText = (amountEl ? amountEl.textContent : '').toLowerCase();
+                    
+                    if (titleText.includes(lowerTerm) || descText.includes(lowerTerm) || amountText.includes(lowerTerm)) {
+                        matchingNodes.add(nodeEl);
+                        // Also show all ancestors
+                        let parent = nodeEl.parentElement;
+                        while (parent && parent.classList.contains('tree-node')) {
+                            matchingNodes.add(parent);
+                            parent = parent.parentElement;
+                        }
+                        // And all descendants
+                        nodeEl.querySelectorAll('.tree-node').forEach(desc => {
+                            matchingNodes.add(desc);
+                        });
+                    }
+                });
+                
+                // Second pass: show/hide nodes
+                allNodes.forEach(nodeEl => {
+                    if (matchingNodes.has(nodeEl)) {
+                        nodeEl.style.display = '';
+                        visibleCount++;
+                    } else {
+                        nodeEl.style.display = 'none';
+                    }
+                });
+                
+                expandAll();
+            } else {
+                // Show all nodes
+                const allNodes = document.querySelectorAll('.tree-node');
+                allNodes.forEach(nodeEl => {
+                    nodeEl.style.display = '';
+                });
+                visibleCount = nodeCount;
+            }
             
             // Update stats
             document.getElementById('nodeCount').textContent = `Nodes: ${nodeCount}`;
             document.getElementById('visibleCount').textContent = `Visible: ${visibleCount}`;
-
-            // Auto-expand if searching
-            if (searchTerm) {
-                expandAll();
-            }
         }
 
         // Load JSON data
@@ -485,10 +541,26 @@
             }
         }
 
+        // Debounced search function
+        function debounceSearch(func, wait) {
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(searchTimeout);
+                    func(...args);
+                };
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(later, wait);
+            };
+        }
+
+        // Optimized search with debouncing
+        const debouncedSearch = debounceSearch(performSearch, 300);
+
         // Initialize
-        document.getElementById('searchInput').addEventListener('input', performSearch);
+        document.getElementById('searchInput').addEventListener('input', debouncedSearch);
         document.getElementById('searchInput').addEventListener('keyup', function(e) {
             if (e.key === 'Enter') {
+                clearTimeout(searchTimeout);
                 performSearch();
             }
         });
