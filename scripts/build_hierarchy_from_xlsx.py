@@ -61,7 +61,8 @@ def is_bullet(value: str) -> bool:
 def clean_value(value: str) -> str:
     """
     Clean up a value extracted from an Excel cell.
-    Removes extra whitespace, normalizes newlines, and handles special formatting.
+    Removes extra whitespace, normalizes newlines, handles special formatting,
+    and strips bullet/numbering prefixes.
     
     Args:
         value: Raw value from Excel cell
@@ -83,7 +84,20 @@ def clean_value(value: str) -> str:
     # Replace multiple spaces with a single space
     value = re.sub(r' +', ' ', value)
     
-    # Remove leading/trailing spaces again after replacement
+    # Strip bullet/numbering prefixes from the value
+    # Patterns to remove:
+    # - "a. ", "b. ", etc. (single letter + dot + space)
+    # - "1. ", "2. ", "10. ", etc. (number + dot + space)
+    # - "a) ", "b) ", etc. (single letter + close paren + space)
+    # - "1) ", "2) ", etc. (number + close paren + space)
+    
+    # Remove single letter + punctuation + space at start
+    value = re.sub(r'^[a-zA-Z][.\)]\s+', '', value)
+    
+    # Remove number + punctuation + space at start (handle 1-999 range)
+    value = re.sub(r'^\d{1,3}[.\)]\s+', '', value)
+    
+    # Remove leading/trailing spaces again after cleaning
     value = value.strip()
     
     return value
