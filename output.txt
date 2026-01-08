@@ -1,0 +1,423 @@
+================================================================================
+UNIQUE VALUES AT LEVELS 0-6
+================================================================================
+
+Loading: /home/temp/_CODE/DPWH_2026_GAA/data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy_table.csv
+Loaded 19,611 rows
+
+================================================================================
+UNIQUE VALUES PER LEVEL
+================================================================================
+
+Level 0:    1 unique values
+  - .
+
+Level 1:    9 unique values
+  - CAPITAL OUTLAYS
+  - GENERAL ADMINISTRATIVE AND SUPPORT
+  - MAINTENANCE AND OTHER OPERATING EXPENSES
+  - OPERATIONS
+  - PROGRAMS / ACTIVITIES / PROJECTS
+  - Payments of Contractual Obligations, VAT and Other Taxes
+  - Payments of Right-Of-Way (ROW)
+  - Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering
+  - SUPPORT TO OPERATIONS
+
+Level 2:    9 unique values
+  - CONVERGENCE AND SPECIAL SUPPORT PROGRAM
+  - FOREIGN-ASSISTED PROJECTS
+  - General Management and Supervision
+  - Infrastructure Planning, Design, Construction and Maintenance
+  - LOCALLY-FUNDED PROJECTS
+  - National Capital Region
+  - ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System
+  - Regional Support (Planning and Design, Construction, Maintenance and Material Quality Control and Hydrology Division)
+  - Testing Materials Needed in Road, Bridge and Building Construction and Other Public Works Projects
+
+Level 3:   32 unique values
+  Sample (first 15 of 32):
+    - Asset Preservation Program
+    - Basic Infrastructure Program
+    - Bridge Program
+    - Central Office
+    - Construction/ Improvement of Access Roads leading to Airports (Kalsada Tungo sa Paliparan, Riles at Daungan Program - KATUPARAN)
+    - Construction/ Improvement of Access Roads leading to Declared Tourism Destinations (Tourism Road Infrastructure Program - TRIP)
+    - Construction/ Improvement of Access Roads leading to Railway Stations (Kalsada Tungo sa Paliparan, Riles at Daungan Program - KATUPARAN)
+    - Construction/ Improvement of Access Roads leading to Seaports (Kalsada Tungo sa Paliparan, Riles at Daungan Program - KATUPARAN)
+    - Construction/ Improvement of Access Roads leading to Trades, Industries and Economic Zones (Roads Leveraging Linkages for Industry and Trade Infrastructure Program - ROLL-IT)
+    - Construction/ Rehabilitation of Water Supply/ Septage and Sewerage/ Rain Water Collectors
+    - Construction/Rehabilitation/Improvement of Facilities for Persons with Disabilities (PWD) and Elderlies/Senior Citizens, including Gender-Responsive Facilities
+    - Design of Infrastructure Projects
+    - Detailed Engineering of Various DPWH Projects
+    - Feasibility Studies of Various DPWH Projects
+    - Geotechnical Investigation of various DPWH Infrastructure Projects
+  ... and 17 more
+
+Level 4:  113 unique values
+  Sample (first 15 of 113):
+    - Asset Preservation Program
+    - BIP - Access Roads and/or Bridges from the National Road/s leading to Major/ Strategic Public Buildings/ Facilities
+    - BIP - Access Roads and/or Bridges from the National Roads connecting to Indigenous People (IP) Communities
+    - BIP - Coastal Roads to augment Resiliency of Coastal Communities
+    - BIP - Evacuation Centers/ Public Health Facilities
+    - BIP - Interjurisdictional Roads and/or Bridges (roads and/or Bridges that traversing multiple LGU jurisdictions)
+    - BIP - Local Ports and Boat Landings
+    - BIP - Major/Strategic Public Buildings/Facilities
+    - BIP - Multi-Purpose Buildings/ Facilities to Support Services
+    - BIP - Public Water Supply System
+    - Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)
+    - Bridge Program
+    - Buildings And Other Structures
+    - Buildings and Other Structures
+    - Bureau Proper
+  ... and 98 more
+
+Level 5:  309 unique values
+  Sample (first 15 of 309):
+    - Abatan River Basin in Bohol
+    - Abra District Engineering Office
+    - Agusan del Norte District Engineering Office
+    - Agusan del Sur 1st District Engineering Office
+    - Agusan del Sur 2nd District Engineering Office
+    - Aklan District Engineering Office
+    - Albay 1st District Engineering Office
+    - Albay 2nd District Engineering Office
+    - Albay 3rd District Engineering Office
+    - Antique District Engineering Office
+    - Apayao 1st District Engineering Office
+    - Apayao 2nd District Engineering Office
+    - Aurora District Engineering Office
+    - Bacolod City District Engineering Office
+    - Baguio City District Engineering Office
+  ... and 294 more
+
+Level 6: 1217 unique values
+  Sample (first 15 of 1217):
+    - Abatan-Agahay-Busao-Toril-Aghao Road (Cabawan) leading to several tourism sites (Sta. 000 + 360.00 - Sta. 000 + 400.00), Maribojoc, Bohol
+    - Abatan-Bagnen Road, in support of the Agribusiness, Coffee, Food Processing and Tourism Industries, Sta. 409+054 - Sta. 409+195, Bauko, Mountain Province
+    - Abongan Alacalian leading to Binga Long Beach, Sta. 9+483.00 - Sta. 10+187.50, Taytay, Palawan
+    - Abra District Engineering Office
+    - Abra-Cervantes Road-Palaquio Road in support of the Cacao Industry, Sta. 0+737 - Sta. 1+307, Bucay, Abra
+    - Abulug-Ballesteros Bay View Boulevard including Access Road leading to Beach Resorts,Sta. 0+000-Sta. 0+579, Sta. 0+000- Sta. 0+046,Ballesteros, Cagayan
+    - Abulug-Ballesteros Bay View Boulevard including Access Road leading to Beach Resorts,Sta. 0+845- Sta. 0+899,Abulug, Cagayan
+    - Accelerated Bridge Construction Project for Greater Economic Mobility and Calamity Response
+    - Accelerated Water and Sanitation Project in Selected Areas (AWSPSA)
+    - Access Road along Coffee Plantation Convergence Project, STA. 0+938 - STA. 1+111, Balungao, Pangasinan
+    - Access Road along Minanga Namuac Road leading to Estuary Sand Dunes and Beaches,Sta. 2+554 - Sta. 2+744,Sanchez Mira, Cagayan
+    - Access Road from Barangay New Ibajay to Sto. Lamoro Jct. leading to El Nido Airport, El Nido, Palawan
+    - Access Road from Brgy. Balaring leading to the Beach Area, Brgy. Basiao, Ivisan, Capiz - Sta. 6+700 - Sta. 6+880
+    - Access Road from Coron Town Proper to Borac RoRo Port, Sta. 12+546.00 - Sta. 12+784.00, Coron, Palawan
+    - Access Road from Crossing Tabuac to Cantumbol Dos Falls, Sta. 2+557.50 - 2+667, Bais City, Negros Oriental
+  ... and 1202 more
+
+================================================================================
+CHECKING FOR OVERLAPPING VALUES
+================================================================================
+
+Found 247 values appearing at multiple levels:
+
+  'National Capital Region' appears at: L2, L3, L4, L5, L6
+  'Central Office' appears at: L3, L4, L5, L6
+  'Region VII' appears at: L4, L5, L6
+  'Region X' appears at: L4, L5, L6
+  'Region III' appears at: L4, L5, L6
+  'Region IV-A' appears at: L4, L5, L6
+  'Region I' appears at: L4, L5, L6
+  'Region VI' appears at: L4, L5, L6
+  'Region XIII' appears at: L4, L5, L6
+  'Region IX' appears at: L4, L5, L6
+  'Region VIII' appears at: L4, L5, L6
+  'Region V' appears at: L4, L5, L6
+  'Region XI' appears at: L4, L5, L6
+  'Cordillera Administrative Region' appears at: L4, L5, L6
+  'Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)' appears at: L4, L5, L6
+  'Region XII' appears at: L4, L5, L6
+  'Region II' appears at: L4, L5, L6
+  'Negros Island Region' appears at: L4, L5, L6
+  'MIMAROPA Region' appears at: L4, L5, L6
+  'ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System' appears at: L2, L3
+  'Asset Preservation Program' appears at: L3, L4
+  'Network Development Program' appears at: L3, L4
+  'Bridge Program' appears at: L3, L4
+  'Construction of Flyovers/ Interchanges/ Underpasses/ Long Span Bridges' appears at: L4, L5
+  'Loan Proceeds' appears at: L4, L6
+  'Rehabilitation/ Reconstruction/ Upgrading of Damaged Paved Roads - Tertiary Roads' appears at: L4, L5
+  'Construction of New Bridges' appears at: L4, L5
+  'GOP' appears at: L4, L6
+  'Preventive Maintenance - Primary Roads' appears at: L4, L5
+  'Abra District Engineering Office' appears at: L5, L6
+  'Pangasinan 2nd District Engineering Office' appears at: L5, L6
+  'Zamboanga City 1st District Engineering Office' appears at: L5, L6
+  'Northern Samar 1st District Engineering Office' appears at: L5, L6
+  'Camarines Sur 1st District Engineering Office' appears at: L5, L6
+  'Zambales 1st District Engineering Office' appears at: L5, L6
+  'Iloilo 4th District Engineering Office' appears at: L5, L6
+  'Nueva Ecija 1st District Engineering Office' appears at: L5, L6
+  'Cebu City District Engineering Office' appears at: L5, L6
+  'Zamboanga City 2nd District Engineering Office' appears at: L5, L6
+  'Biliran District Engineering Office' appears at: L5, L6
+  'Ilocos Sur 2nd District Engineering Office' appears at: L5, L6
+  'Isabela 2nd District Engineering Office' appears at: L5, L6
+  'Leyte 3rd District Engineering Office' appears at: L5, L6
+  'Nueva Vizcaya 1st District Engineering Office' appears at: L5, L6
+  'Metro Manila 1st District Engineering Office' appears at: L5, L6
+  'Siquijor District Engineering Office' appears at: L5, L6
+  'Quezon 4th District Engineering Office' appears at: L5, L6
+  'La Union 1st District Engineering Office' appears at: L5, L6
+  'Camiguin District Engineering Office' appears at: L5, L6
+  'Las Piñas-Muntinlupa District Engineering Office' appears at: L5, L6
+  'Palawan 3rd District Engineering Office' appears at: L5, L6
+  'Davao de Oro 2nd District Engineering Office' appears at: L5, L6
+  'Albay 3rd District Engineering Office' appears at: L5, L6
+  'Samar 1st District Engineering Office' appears at: L5, L6
+  'Upper Kalinga District Engineering Office' appears at: L5, L6
+  'Agusan del Sur 2nd District Engineering Office' appears at: L5, L6
+  'Capiz 2nd District Engineering Office' appears at: L5, L6
+  'Iloilo 3rd District Engineering Office' appears at: L5, L6
+  'Bohol 2nd District Engineering Office' appears at: L5, L6
+  'Misamis Oriental 2nd District Engineering Office' appears at: L5, L6
+  'Cagayan de Oro City 2nd District Engineering Office' appears at: L5, L6
+  'Regional Office XII' appears at: L5, L6
+  'Pangasinan 3rd District Engineering Office' appears at: L5, L6
+  'Cotabato 1st District Engineering Office' appears at: L5, L6
+  'Regional Office XIII' appears at: L5, L6
+  'Surigao del Sur 2nd District Engineering Office' appears at: L5, L6
+  'Negros Occidental 5th District Engineering Office' appears at: L5, L6
+  'Bohol 3rd District Engineering Office' appears at: L5, L6
+  'Misamis Occidental 1st District Engineering Office' appears at: L5, L6
+  'Cebu 7th District Engineering Office' appears at: L5, L6
+  'Agusan del Norte District Engineering Office' appears at: L5, L6
+  'Sarangani District Engineering Office' appears at: L5, L6
+  'Bukidnon 2nd District Engineering Office' appears at: L5, L6
+  'Iligan City District Engineering Office' appears at: L5, L6
+  'Tacloban City District Engineering Office' appears at: L5, L6
+  'Bulacan 3rd District Engineering Office' appears at: L5, L6
+  'Bukidnon 4th District Engineering Office' appears at: L5, L6
+  'Regional Office IX' appears at: L5, L6
+  'Samar 2nd District Engineering Office' appears at: L5, L6
+  'Isabela 3rd District Engineering Office' appears at: L5, L6
+  'Regional Office II' appears at: L5, L6
+  'North Manila District Engineering Office' appears at: L5, L6
+  'Apayao 1st District Engineering Office' appears at: L5, L6
+  'Pampanga 1st District Engineering Office' appears at: L5, L6
+  'Zamboanga del Norte 4th District Engineering Office' appears at: L5, L6
+  'Regional Office CAR' appears at: L5, L6
+  'Cebu 4th District Engineering Office' appears at: L5, L6
+  'Metro Manila 2nd District Engineering Office' appears at: L5, L6
+  'Ilocos Sur 1st District Engineering Office' appears at: L5, L6
+  'Laguna 3rd District Engineering Office' appears at: L5, L6
+  'South Manila District Engineering Office' appears at: L5, L6
+  'South Cotabato 2nd District Engineering Office' appears at: L5, L6
+  'Lower Kalinga District Engineering Office' appears at: L5, L6
+  'Zambales 2nd District Engineering Office' appears at: L5, L6
+  'Rizal 2nd District Engineering Office' appears at: L5, L6
+  'Bulacan 1st District Engineering Office' appears at: L5, L6
+  'Palawan 1st District Engineering Office' appears at: L5, L6
+  'Cavite 1st District Engineering Office' appears at: L5, L6
+  'Bataan 3rd District Engineering Office' appears at: L5, L6
+  'Misamis Occidental 2nd District Engineering Office' appears at: L5, L6
+  'Ifugao 2nd District Engineering Office' appears at: L5, L6
+  'Cavite 3rd District Engineering Office' appears at: L5, L6
+  'Regional Office VII' appears at: L5, L6
+  'Regional Office NIR' appears at: L5, L6
+  'Regional Office I' appears at: L5, L6
+  'Negros Occidental 1st District Engineering Office' appears at: L5, L6
+  'Zamboanga Sibugay 1st District Engineering Office' appears at: L5, L6
+  'Davao City District Engineering Office' appears at: L5, L6
+  'Pangasinan 1st District Engineering Office' appears at: L5, L6
+  'Southern Mindoro District Engineering Office' appears at: L5, L6
+  'Davao City 3rd District Engineering Office' appears at: L5, L6
+  'Dinagat Islands District Engineering Office' appears at: L5, L6
+  'Zamboanga del Norte 2nd District Engineering Office' appears at: L5, L6
+  'Las Piñas Muntinlupa District Engineering Office' appears at: L5, L6
+  'Cavite 2nd District Engineering Office' appears at: L5, L6
+  'Sultan Kudarat 2nd District Engineering Office' appears at: L5, L6
+  'Sorsogon District Engineering Office' appears at: L5, L6
+  'Nueva Vizcaya 2nd District Engineering Office' appears at: L5, L6
+  'Pangasinan 4th District Engineering Office' appears at: L5, L6
+  'Surigao del Norte 1st District Engineering Office' appears at: L5, L6
+  'Quezon City 1st District Engineering Office' appears at: L5, L6
+  'Zamboanga del Norte 3rd District Engineering Office' appears at: L5, L6
+  'Camarines Norte District Engineering Office' appears at: L5, L6
+  'Surigao del Norte 2nd District Engineering Office' appears at: L5, L6
+  'Tarlac 2nd District Engineering Office' appears at: L5, L6
+  'Davao Oriental 2nd District Engineering Office' appears at: L5, L6
+  'Cagayan 3rd District Engineering Office' appears at: L5, L6
+  'Iloilo City District Engineering Office' appears at: L5, L6
+  'Leyte 2nd District Engineering Office' appears at: L5, L6
+  'Tarlac District Engineering Office' appears at: L5, L6
+  'Regional Office V' appears at: L5, L6
+  'Camarines Sur 4th District Engineering Office' appears at: L5, L6
+  'Nationwide' appears at: L5, L6
+  'Quezon 3rd District Engineering Office' appears at: L5, L6
+  'Leyte 4th District Engineering Office' appears at: L5, L6
+  'Cebu 2nd District Engineering Office' appears at: L5, L6
+  'Camarines Sur 2nd District Engineering Office' appears at: L5, L6
+  'Negros Oriental 3rd District Engineering Office' appears at: L5, L6
+  'Benguet 2nd District Engineering Office' appears at: L5, L6
+  'Camarines Sur 5th District Engineering Office' appears at: L5, L6
+  'Davao del Norte 2nd District Engineering Office' appears at: L5, L6
+  'Rizal 1st District Engineering Office' appears at: L5, L6
+  'Pampanga 3rd District Engineering Office' appears at: L5, L6
+  'Batanes District Engineering Office' appears at: L5, L6
+  'Batangas 3rd District Engineering Office' appears at: L5, L6
+  'Laguna 1st District Engineering Office' appears at: L5, L6
+  'Cotabato 3rd District Engineering Office' appears at: L5, L6
+  'Quezon 1st District Engineering Office' appears at: L5, L6
+  'Northern Samar 2nd District Engineering Office' appears at: L5, L6
+  'Cebu 3rd District Engineering Office' appears at: L5, L6
+  'Southern Leyte 1st District Engineering Office' appears at: L5, L6
+  'Catanduanes District Engineering Office' appears at: L5, L6
+  'Surigao del Sur 1st District Engineering Office' appears at: L5, L6
+  'Pampanga 2nd District Engineering Office' appears at: L5, L6
+  'Regional Office MIMAROPA' appears at: L5, L6
+  'Cagayan de Oro City 1st District Engineering Office' appears at: L5, L6
+  'Cagayan 2nd District Engineering Office' appears at: L5, L6
+  'Romblon District Engineering Office' appears at: L5, L6
+  'Regional Office IV-A' appears at: L5, L6
+  'Zamboanga del Sur 2nd District Engineering Office' appears at: L5, L6
+  'Lanao del Norte 1st District Engineering Office' appears at: L5, L6
+  'Mt. Province District Engineering Office' appears at: L5, L6
+  'Cebu 5th District Engineering Office' appears at: L5, L6
+  'Bukidnon 1st District Engineering Office' appears at: L5, L6
+  'Leyte 5th District Engineering Office' appears at: L5, L6
+  'Southern Leyte 2nd District Engineering Office' appears at: L5, L6
+  'Davao del Norte District Engineering Office' appears at: L5, L6
+  'Laguna 2nd District Engineering Office' appears at: L5, L6
+  'Bataan 2nd District Engineering Office' appears at: L5, L6
+  'Cebu 1st District Engineering Office' appears at: L5, L6
+  'Malabon-Navotas District Engineering Office' appears at: L5, L6
+  'Ilocos Norte 1st District Engineering Office' appears at: L5, L6
+  'Isabela City District Engineering Office' appears at: L5, L6
+  'Regional Office X' appears at: L5, L6
+  'Batangas 4th District Engineering Office' appears at: L5, L6
+  'Bohol 1st District Engineering Office' appears at: L5, L6
+  'Camarines Norte Sub-District Engineering Office' appears at: L5, L6
+  'Ilocos Norte 2nd District Engineering Office' appears at: L5, L6
+  'Davao Occidental District Engineering Office' appears at: L5, L6
+  'NCR Regional Office' appears at: L5, L6
+  'Zamboanga del Sur 1st District Engineering Office' appears at: L5, L6
+  'Zamboanga Sibugay 2nd District Engineering Office' appears at: L5, L6
+  'Bulacan 2nd District Engineering Office' appears at: L5, L6
+  'Antique District Engineering Office' appears at: L5, L6
+  'South Cotabato 1st District Engineering Office' appears at: L5, L6
+  'Batangas 2nd District Engineering Office' appears at: L5, L6
+  'Nueva Vizcaya District Engineering Office' appears at: L5, L6
+  'Nueva Ecija 2nd District Engineering Office' appears at: L5, L6
+  'Guimaras District Engineering Office' appears at: L5, L6
+  'Benguet 1st District Engineering Office' appears at: L5, L6
+  'Cagayan 1st District Engineering Office' appears at: L5, L6
+  'Masbate 3rd District Engineering Office' appears at: L5, L6
+  'Bataan 1st District Engineering Office' appears at: L5, L6
+  'Cotabato 2nd District Engineering Office' appears at: L5, L6
+  'Zamboanga del Norte 1st District Engineering Office' appears at: L5, L6
+  'Apayao 2nd District Engineering Office' appears at: L5, L6
+  'Batangas 1st District Engineering Office' appears at: L5, L6
+  'Baguio City District Engineering Office' appears at: L5, L6
+  'Mountain Province 2nd District Engineering Office' appears at: L5, L6
+  'Negros Oriental 1st District Engineering Office' appears at: L5, L6
+  'La Union 2nd District Engineering Office' appears at: L5, L6
+  'Mountain Province 1st District Engineering Office' appears at: L5, L6
+  'Regional Office XI' appears at: L5, L6
+  'Bacolod City District Engineering Office' appears at: L5, L6
+  'Quirino District Engineering Office' appears at: L5, L6
+  'Sorsogon 2nd District Engineering Office' appears at: L5, L6
+  'Negros Oriental 2nd District Engineering Office' appears at: L5, L6
+  'Negros Occidental 3rd District Engineering Office' appears at: L5, L6
+  'Mindoro Oriental District Engineering Office' appears at: L5, L6
+  'Eastern Samar District Engineering Office' appears at: L5, L6
+  'Iloilo 6th District Engineering Office' appears at: L5, L6
+  'Negros Occidental 4th District Engineering Office' appears at: L5, L6
+  'Metro Manila 3rd District Engineering Office' appears at: L5, L6
+  'Masbate 2nd District Engineering Office' appears at: L5, L6
+  'Sultan Kudarat 1st District Engineering Office' appears at: L5, L6
+  'Davao City 2nd District Engineering Office' appears at: L5, L6
+  'Negros Occidental 2nd District Engineering Office' appears at: L5, L6
+  'Regional Office VI' appears at: L5, L6
+  'Quezon City 2nd District Engineering Office' appears at: L5, L6
+  'Butuan City District Engineering Office' appears at: L5, L6
+  'Iloilo 2nd District Engineering Office' appears at: L5, L6
+  'Mindoro Occidental District Engineering Office' appears at: L5, L6
+  'Lanao del Norte 2nd District Engineering Office' appears at: L5, L6
+  'Masbate 1st District Engineering Office' appears at: L5, L6
+  'Isabela 1st District Engineering Office' appears at: L5, L6
+  'Bukidnon 3rd District Engineering Office' appears at: L5, L6
+  'Leyte 1st District Engineering Office' appears at: L5, L6
+  'Davao Oriental 1st District Engineering Office' appears at: L5, L6
+  'Davao de Oro 1st District Engineering Office' appears at: L5, L6
+  'Regional Office III' appears at: L5, L6
+  'Albay 2nd District Engineering Office' appears at: L5, L6
+  'Ifugao 1st District Engineering Office' appears at: L5, L6
+  'Aurora District Engineering Office' appears at: L5, L6
+  'Camarines Sur 3rd District Engineering Office' appears at: L5, L6
+  'Agusan del Sur 1st District Engineering Office' appears at: L5, L6
+  'Isabela 4th District Engineering Office' appears at: L5, L6
+  'Quezon 2nd District Engineering Office' appears at: L5, L6
+  'Iloilo 1st District Engineering Office' appears at: L5, L6
+  'Aklan District Engineering Office' appears at: L5, L6
+  'Regional Office VIII' appears at: L5, L6
+  'Palawan 2nd District Engineering Office' appears at: L5, L6
+  'Davao del Sur District Engineering Office' appears at: L5, L6
+  'Albay 1st District Engineering Office' appears at: L5, L6
+  'Cebu 6th District Engineering Office' appears at: L5, L6
+  'Marinduque District Engineering Office' appears at: L5, L6
+  'Misamis Oriental 1st District Engineering Office' appears at: L5, L6
+  'Capiz 1st District Engineering Office' appears at: L5, L6
+
+================================================================================
+VALUE DEPTH DISTRIBUTION
+================================================================================
+
+Level 0: Values appear at these depths:
+  '....' (depths: D1, D2, D3, D4, D5, D6, D7, D8)
+
+Level 1: Values appear at these depths:
+  'SUPPORT TO OPERATIONS...' (depths: D1, D2, D3, D4, D5, D6, D7)
+  'GENERAL ADMINISTRATIVE AND SUPPORT...' (depths: D3, D4, D5, D6, D7, D8)
+  'OPERATIONS...' (depths: D2, D4, D5, D6, D7, D8)
+  'Pre-Feasibility Study / Feasibility Study / Prelim...' (depths: D3, D4, D5, D6, D7)
+  'Payments of Right-Of-Way (ROW)...' (depths: D4, D5)
+  'PROGRAMS / ACTIVITIES / PROJECTS...' (depths: D1)
+  'MAINTENANCE AND OTHER OPERATING EXPENSES...' (depths: D1)
+  'CAPITAL OUTLAYS...' (depths: D1)
+  'Payments of Contractual Obligations, VAT and Other...' (depths: D4)
+
+Level 2: Values appear at these depths:
+  'National Capital Region...' (depths: D3, D4, D5, D6, D7)
+  'Infrastructure Planning, Design, Construction and ...' (depths: D3, D4, D5, D6, D7)
+  'General Management and Supervision...' (depths: D4, D5, D6, D7, D8)
+  'CONVERGENCE AND SPECIAL SUPPORT PROGRAM...' (depths: D5, D6, D7, D8)
+  'ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliabl...' (depths: D4, D7, D8)
+  'Regional Support (Planning and Design, Constructio...' (depths: D2)
+  'Testing Materials Needed in Road, Bridge and Build...' (depths: D2)
+  'LOCALLY-FUNDED PROJECTS...' (depths: D8)
+  'FOREIGN-ASSISTED PROJECTS...' (depths: D2)
+
+Level 3: Values appear at these depths:
+  'National Capital Region...' (depths: D4, D5, D6, D7, D8)
+  'Maintenance, Repair and Rehabilitation of Infrastr...' (depths: D4, D5, D6, D7)
+  'Central Office...' (depths: D3, D4, D5)
+  'Regionwide / Nationwide...' (depths: D5, D6, D7)
+  'Asset Preservation Program...' (depths: D4, D7, D8)
+  'Network Development Program...' (depths: D4, D7, D8)
+  'Detailed Engineering of Various DPWH Projects...' (depths: D4, D5)
+  'Bridge Program...' (depths: D7, D8)
+  'Construction/ Improvement of Access Roads leading ...' (depths: D6, D7)
+  'Construction/ Improvement of Access Roads leading ...' (depths: D6, D7)
+  ... and 22 more values
+
+Level 4: Values appear at these depths:
+  'Non-Infrastructure...' (depths: D5, D6, D7, D8)
+  'National Capital Region...' (depths: D4, D5, D6, D7)
+  'Region I...' (depths: D4, D5, D6)
+  'Cordillera Administrative Region...' (depths: D4, D5, D6)
+  'Region II...' (depths: D4, D5, D6)
+  'Region III...' (depths: D4, D5, D6)
+  'Region IV-A...' (depths: D4, D5, D6)
+  'MIMAROPA Region...' (depths: D4, D5, D6)
+  'Region V...' (depths: D4, D5, D6)
+  'Region VI...' (depths: D4, D5, D6)
+  ... and 103 more values
+
+Level 5: Values appear at these depths:
+  'National Capital Region...' (dept

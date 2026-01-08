@@ -1,0 +1,877 @@
+[
+  {
+    "name": "CAPITAL OUTLAYS",
+    "count": 1,
+    "total_amount": 496927726000.0,
+    "avg_amount": 496927726000.0,
+    "depth_distribution": {
+      "1": 1
+    },
+    "level_2_categories": {},
+    "level_3_categories": {},
+    "level_4_categories": {},
+    "level_5_categories": {},
+    "level_6_categories": {},
+    "top_paths": [
+      [
+        ". > CAPITAL OUTLAYS",
+        496927726000.0,
+        1
+      ]
+    ]
+  },
+  {
+    "name": "GENERAL ADMINISTRATIVE AND SUPPORT",
+    "count": 38,
+    "total_amount": 4843779000.0,
+    "avg_amount": 127467868.42105263,
+    "depth_distribution": {
+      "3": 1,
+      "4": 1,
+      "5": 6,
+      "8": 8,
+      "7": 2,
+      "6": 20
+    },
+    "level_2_categories": {
+      "General Management and Supervision": 37,
+      "National Capital Region": 1
+    },
+    "level_3_categories": {
+      "National Capital Region": 37,
+      "Central Office": 1
+    },
+    "level_4_categories": {
+      "Non-Infrastructure": 32,
+      "Medium-Term Information and Communication Technology Harmonization Initiative (MITHI)": 4,
+      "Central Office": 1
+    },
+    "level_5_categories": {
+      "Dredging Equipment and Other Related Equipment": 17,
+      "Weighbridge Equipment and ATOME Stations": 10,
+      "Machinery and Equipment Outlay/ ICT Equipment": 3,
+      "Equipment Procurement Program": 1,
+      "Procurement of Various Laboratory/ Non-Destructive Testing Equipment/ Apparatus/ Supplies": 1,
+      "National Hydrological Data Collection Program (NGDCP)": 1,
+      "Engineering Survey Equipment": 1,
+      "Engineering Survey Investigation Software": 1,
+      "ICT Software": 1
+    },
+    "level_6_categories": {
+      "Supply of portable Weigh-In Motion (PWIM) Machine": 5,
+      "Supply of permanent truck-weighing machine": 2,
+      "Reconstruction and Rehabilitation of Weighbridge Station Building": 2,
+      "Supply and installation of container van for ATOME Station": 1,
+      "National Capital Region": 1,
+      "Region I": 1,
+      "Cordillera Administrative Region": 1,
+      "Region II": 1,
+      "Region III": 1,
+      "Region IV-A": 1
+    },
+    "top_paths": [
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > National Capital Region > Central Office",
+        2042917000.0,
+        3
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Central Office",
+        1400431000.0,
+        4
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Equipment Procurement Program",
+        540808000.0,
+        5
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Procurement of Various Laboratory/ Non-Destructive Testing Equipment/ Apparatus/ Supplies",
+        200000000.0,
+        5
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Engineering Survey Equipment",
+        50000000.0,
+        5
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > National Hydrological Data Collection Program (NGDCP)",
+        35000000.0,
+        5
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > National Capital Region",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Region I",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Cordillera Administrative Region",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Region II",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Region III",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Region IV-A",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > MIMAROPA Region",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Region V",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Region VI",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Negros Island Region",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Region VII",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Region VIII",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Region IX",
+        30000000.0,
+        6
+      ],
+      [
+        ". > GENERAL ADMINISTRATIVE AND SUPPORT > General Management and Supervision > National Capital Region > Non-Infrastructure > Dredging Equipment and Other Related Equipment > Region X",
+        30000000.0,
+        6
+      ]
+    ]
+  },
+  {
+    "name": "MAINTENANCE AND OTHER OPERATING EXPENSES",
+    "count": 1,
+    "total_amount": 18371150000.0,
+    "avg_amount": 18371150000.0,
+    "depth_distribution": {
+      "1": 1
+    },
+    "level_2_categories": {},
+    "level_3_categories": {},
+    "level_4_categories": {},
+    "level_5_categories": {},
+    "level_6_categories": {},
+    "top_paths": [
+      [
+        ". > MAINTENANCE AND OTHER OPERATING EXPENSES",
+        18371150000.0,
+        1
+      ]
+    ]
+  },
+  {
+    "name": "OPERATIONS",
+    "count": 17951,
+    "total_amount": 655984994000.0,
+    "avg_amount": 36543089.187231906,
+    "depth_distribution": {
+      "4": 9,
+      "8": 3666,
+      "7": 13377,
+      "6": 897,
+      "5": 1,
+      "2": 1
+    },
+    "level_2_categories": {
+      "CONVERGENCE AND SPECIAL SUPPORT PROGRAM": 12697,
+      "ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System": 5029,
+      "LOCALLY-FUNDED PROJECTS": 142,
+      "National Capital Region": 82,
+      "FOREIGN-ASSISTED PROJECTS": 1
+    },
+    "level_3_categories": {
+      "Basic Infrastructure Program": 8185,
+      "Sustainable Infrastructure Projects Alleviating Gaps (SIPAG)": 3179,
+      "Asset Preservation Program": 2747,
+      "Network Development Program": 1329,
+      "Bridge Program": 953,
+      "Special Road Fund - Motor Vehicle User's Charge (MVUC) as per R.A. 11239": 433,
+      "Construction/ Improvement of Access Roads leading to Declared Tourism Destinations (Tourism Road Infrastructure Program - TRIP)": 373,
+      "Construction/ Improvement of Access Roads leading to Trades, Industries and Economic Zones (Roads Leveraging Linkages for Industry and Trade Infrastructure Program - ROLL-IT)": 297,
+      "National Building Program": 141,
+      "Construction/ Rehabilitation of Water Supply/ Septage and Sewerage/ Rain Water Collectors": 138
+    },
+    "level_4_categories": {
+      "BIP - Multi-Purpose Buildings/ Facilities to Support Services": 5914,
+      "SIPAG - Access Roads and/or Bridges from the National Road/s leading to Major/ Strategic Public Buildings/ Facilities": 2359,
+      "BIP - Access Roads and/or Bridges from the National Road/s leading to Major/ Strategic Public Buildings/ Facilities": 1614,
+      "SIPAG - Multi-Purpose Buildings/ Facilities to support Social Services": 479,
+      "Preventive Maintenance - Secondary Roads": 414,
+      "Construction of By-Pass and Diversion Roads": 384,
+      "Road Widening - Secondary Roads": 359,
+      "BIP - Public Water Supply System": 345,
+      "Preventive Maintenance - Tertiary Roads": 303,
+      "Rehabilitation/ Major Repair of Permanent Bridges": 280
+    },
+    "level_5_categories": {
+      "National Capital Region": 4296,
+      "Region IV-A": 1848,
+      "Region III": 1271,
+      "Region VI": 898,
+      "Region X": 895,
+      "Region II": 855,
+      "Region VIII": 824,
+      "Region VII": 807,
+      "Region V": 731,
+      "Region I": 668
+    },
+    "level_6_categories": {
+      "Central Office": 3593,
+      "Batangas 1st District Engineering Office": 473,
+      "Antique District Engineering Office": 316,
+      "Nueva Ecija 1st District Engineering Office": 273,
+      "Batangas 4th District Engineering Office": 200,
+      "Pangasinan 3rd District Engineering Office": 188,
+      "Metro Manila 3rd District Engineering Office": 187,
+      "Isabela 4th District Engineering Office": 177,
+      "Metro Manila 1st District Engineering Office": 168,
+      "Davao de Oro 1st District Engineering Office": 164
+    },
+    "top_paths": [
+      [
+        ". > OPERATIONS > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Asset Preservation Program > Preventive Maintenance",
+        38583875000.0,
+        4
+      ],
+      [
+        ". > OPERATIONS > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Network Development Program > Road Widening",
+        34091978000.0,
+        4
+      ],
+      [
+        ". > OPERATIONS > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Asset Preservation Program > Rehabilitation/ Reconstruction of Roads with Slips, Slope Collapse, and Landslide",
+        24004183000.0,
+        4
+      ],
+      [
+        ". > OPERATIONS > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Asset Preservation Program > Rehabilitation/ Reconstruction/ Upgrading of Damaged Paved Roads",
+        19412883000.0,
+        4
+      ],
+      [
+        ". > OPERATIONS > FOREIGN-ASSISTED PROJECTS",
+        17696626000.0,
+        2
+      ],
+      [
+        ". > OPERATIONS > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Asset Preservation Program > Construction/ Upgrading/ Rehabilitation of Drainage along National Roads",
+        16891979000.0,
+        4
+      ],
+      [
+        ". > OPERATIONS > National Capital Region > Central Office > GOP",
+        11284687000.0,
+        4
+      ],
+      [
+        ". > OPERATIONS > National Capital Region > Central Office > Loan Proceeds",
+        6411939000.0,
+        4
+      ],
+      [
+        ". > OPERATIONS > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Network Development Program > Off-Carriageway Improvement",
+        3041722000.0,
+        4
+      ],
+      [
+        ". > OPERATIONS > National Capital Region > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Bridge Program > Construction of New Bridges > Priority Bridges Crossing Pasig-Marikina River and Manggahan Floodway Bridges Construction Project, under China Government Financing Facility > GOP",
+        1332334000.0,
+        7
+      ],
+      [
+        ". > OPERATIONS > National Capital Region > ORGANIZATIONAL OUTCOME 2 : Protect Lives and Properties Against Major Floods > Flood Management Program > Construction/ Rehabilitation of Flood Mitigation Facilities within Major River Basins and Principal Rivers > Pasig-Marikina River Channel Improvement Project, Phase IV, JICA, PH-P271 with Supplemental Loan, JICA, PH-P283 > Loan Proceeds",
+        1262070000.0,
+        7
+      ],
+      [
+        ". > OPERATIONS > CONVERGENCE AND SPECIAL SUPPORT PROGRAM > Rehabilitation of Disaster-Related Infrastructure and Other Facilities > National Capital Region > Central Office",
+        1200000000.0,
+        5
+      ],
+      [
+        ". > OPERATIONS > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Network Development Program > Paving of Unpaved Roads",
+        1187827000.0,
+        4
+      ],
+      [
+        ". > OPERATIONS > National Capital Region > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Network Development Program > Construction of Missing Links/New Roads > Improving Growth Corridors in Mindanao Road Sector Project (IGCMRSP), ADB Loan No. 3631-PHI > GOP",
+        1182928000.0,
+        7
+      ],
+      [
+        ". > OPERATIONS > LOCALLY-FUNDED PROJECTS > Public-Private Partnership Strategic Support Fund (including ROW and Variations) > National Roads and Bridges > National Roads > National Capital Region > Central Office > Tarlac-Pangasinan-La Union Expressway; NLEX-SLEX Connector Road Project; Cavite-Laguna Expressway Project; Muntinlupa-Cavite Expressway (Daang Hari-SLEX Link Road); NAIA Expressway; Quirino Highway Project; DPWH Central Office Building; Central Luzon Link Expressway (CLLEX), Phase II (PPP hybrid modality) (Region III); North Luzon Expressway East (NLEE) Phase I and II (Region III); Metro Cebu Expressway (Region VII); Iloilo-Capiz-Aklan Expressway (ICAX) (Region VI); Naawan-Opol-Cagayan de Oro-Villanueva Expressway Project (Region X); Dingalan-Capas-Botolan Expressway Project (Region III); Pangasinan-Nueva Ecija Expressway (PaNEX) (Region I & III); Cavite-Tagaytay-Batangas Expressway (CTBEX) (Region IV-A); Tarlac-Pangasinan-La Union Expressway (TPLEX) Extension Project (Region I); Boracay Bridge Projects (Region VI); Pacific Eastern Seaboard Expressway (Region III & IV-A); Mindoro-Batangas Super Bridge (Region IV-A & IV-B); Rehabilitation/ Reconstruction/ Improvement, Operation & Maintenance of Kennon Road Project (CAR); and such other priority Public-Private Partnership Infrastructure Projects",
+        1000000000.0,
+        8
+      ],
+      [
+        ". > OPERATIONS > National Capital Region > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Network Development Program > Construction of By-Passes/Diversion Roads > Cebu-Mactan Bridge (4th Bridge) and Coastal Road Construction Project, JICA, PH-P274 > GOP",
+        990778000.0,
+        7
+      ],
+      [
+        ". > OPERATIONS > National Capital Region > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Network Development Program > Construction of By-Passes/Diversion Roads > Davao City Bypass Construction Project (II) (South and Center Sections), Package I, JICA, PH-P282 > GOP",
+        877063000.0,
+        7
+      ],
+      [
+        ". > OPERATIONS > National Capital Region > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Network Development Program > Construction of By-Passes/Diversion Roads > Bataan-Cavite Interlink Bridge (BCIB) Project, ADB Loan No. 4432-PHI and AIIB Loan No. L0724A > GOP",
+        866362000.0,
+        7
+      ],
+      [
+        ". > OPERATIONS > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Bridge Program > Construction of New Bridges > National Capital Region > Central Office > Region I > Pancian Viaduct, K0 578+755 - K0579+295 along Manila, Ilocos Norte",
+        829496000.0,
+        8
+      ],
+      [
+        ". > OPERATIONS > National Capital Region > ORGANIZATIONAL OUTCOME 1 : Ensure Safe and Reliable National Road System > Network Development Program > Construction of By-Passes/Diversion Roads > Laguna-Lakeshore Road Network (LLRN) Project, ADB Loan No. 4523-PHI (Tranche 1) > GOP",
+        757980000.0,
+        7
+      ]
+    ]
+  },
+  {
+    "name": "PROGRAMS / ACTIVITIES / PROJECTS",
+    "count": 1,
+    "total_amount": 0,
+    "avg_amount": 0.0,
+    "depth_distribution": {
+      "1": 1
+    },
+    "level_2_categories": {},
+    "level_3_categories": {},
+    "level_4_categories": {},
+    "level_5_categories": {},
+    "level_6_categories": {},
+    "top_paths": []
+  },
+  {
+    "name": "Payments of Contractual Obligations, VAT and Other Taxes",
+    "count": 1,
+    "total_amount": 1000000000.0,
+    "avg_amount": 1000000000.0,
+    "depth_distribution": {
+      "4": 1
+    },
+    "level_2_categories": {
+      "National Capital Region": 1
+    },
+    "level_3_categories": {
+      "Central Office": 1
+    },
+    "level_4_categories": {
+      "Highways, Flood Control, and Others": 1
+    },
+    "level_5_categories": {},
+    "level_6_categories": {},
+    "top_paths": [
+      [
+        ". > Payments of Contractual Obligations, VAT and Other Taxes > National Capital Region > Central Office > Highways, Flood Control, and Others",
+        1000000000.0,
+        4
+      ]
+    ]
+  },
+  {
+    "name": "Payments of Right-Of-Way (ROW)",
+    "count": 39,
+    "total_amount": 5000000000.0,
+    "avg_amount": 128205128.20512821,
+    "depth_distribution": {
+      "5": 37,
+      "4": 2
+    },
+    "level_2_categories": {
+      "National Capital Region": 39
+    },
+    "level_3_categories": {
+      "Central Office": 39
+    },
+    "level_4_categories": {
+      "Various Completed Projects": 18,
+      "Various On-going Projects": 18,
+      "Right-Of-Way Claims with Court Orders": 1,
+      "Payment of Utility Relocation including Electric Cooperatives, and Others": 1,
+      "PPP projects under TRB:": 1
+    },
+    "level_5_categories": {
+      "National Capital Region": 2,
+      "Region I": 2,
+      "Cordillera Administrative Region": 2,
+      "Region II": 2,
+      "Region III": 2,
+      "Region IV-A": 2,
+      "MIMAROPA Region": 2,
+      "Region V": 2,
+      "Region VI": 2,
+      "Negros Island Region": 2
+    },
+    "level_6_categories": {},
+    "top_paths": [
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > UPMO",
+        407435000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > National Capital Region",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region I",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Cordillera Administrative Region",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region II",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region III",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region IV-A",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > MIMAROPA Region",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region V",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region VI",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Negros Island Region",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region VII",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region VIII",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region IX",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region X",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region XI",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region XII",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various Completed Projects > Region XIII",
+        205445000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > PPP projects under TRB: > Southeast Metro Manila Expressway (C6) Project; C5 Southlink Expressway Project; South Luzon Expressway (SLEX) Phase II, Toll Road 4 (TR-4); C5 Northern Link Road Project, Segments 8.1, 8.2, 9 and 10; Manila-Cavite Toll Expressway Project (MCTEP); R-1 Enhancement Manila Left Turning (Phase - II Pacific Drive); Skyway Stages 1 and 2; South Luzon Tollway Extension (SLEX) Project; North Luzon Expressway/ Manila North Expressway",
+        100000000.0,
+        5
+      ],
+      [
+        ". > Payments of Right-Of-Way (ROW) > National Capital Region > Central Office > Various On-going Projects > National Capital Region",
+        50000000.0,
+        5
+      ]
+    ]
+  },
+  {
+    "name": "Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering",
+    "count": 688,
+    "total_amount": 12300000000.0,
+    "avg_amount": 17877906.976744186,
+    "depth_distribution": {
+      "3": 1,
+      "4": 72,
+      "5": 238,
+      "6": 220,
+      "7": 157
+    },
+    "level_2_categories": {
+      "National Capital Region": 688
+    },
+    "level_3_categories": {
+      "Regionwide / Nationwide": 401,
+      "Detailed Engineering of Various DPWH Projects": 216,
+      "Preliminary Engineering of Various DPWH Projects": 19,
+      "Pre-Feasibility Studies of Various DPWH Projects": 17,
+      "Feasibility Studies of Various DPWH Projects": 17,
+      "Geotechnical Investigation of various DPWH Infrastructure Projects": 17,
+      "Central Office": 1
+    },
+    "level_4_categories": {
+      "Others": 205,
+      "Roads and Bridges": 190,
+      "Region III": 21,
+      "Region IV-A": 21,
+      "Region V": 21,
+      "Region VIII": 19,
+      "Region X": 19,
+      "Cordillera Administrative Region": 17,
+      "Region II": 16,
+      "Region VI": 16
+    },
+    "level_5_categories": {
+      "Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment": 144,
+      "Environmental Management Conservation Program/ Training/ Activities": 19,
+      "Gender and Development Program/ Training/ Activities": 19,
+      "Right-Of-Way Action Plan (RAP), and Indigenous People and Development Plan (IPDP) Preparation": 18,
+      "Environmental Impact Assessment (EIA) and/or Environmental Certificates/ Clearances/ Permits and other related Environmental Requirements": 18,
+      "Disability Affairs related Advocacy Program/ Awareness Activities": 18,
+      "Land Acquisition and Right-Of-Way Action Plan (LAPRAP) for Various Roads and Bridges Preparation": 17,
+      "Parcellary Surveys of National Roads and Bridges": 17,
+      "Land Appraisal of Public Infrastructures": 17,
+      "Land Titling (including Taxes) of Public Infrastructures": 17
+    },
+    "level_6_categories": {
+      "Region IV-A": 35,
+      "Region III": 32,
+      "Region II": 25,
+      "Region V": 24,
+      "Negros Island Region": 24,
+      "Region IX": 22,
+      "Region VIII": 21,
+      "Region XIII": 21,
+      "Cordillera Administrative Region": 20,
+      "Region VI": 18
+    },
+    "top_paths": [
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Central Office",
+        6150000000.0,
+        3
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region IX > Underpass from the Junction of Sta. Cruz Flyover, Governor Camins Avenue, Zamboanga City",
+        150000000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region VII > Central Visayas Road Network Master Plan",
+        149500000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Nationwide > Feasibility Study for the Sorsogon-Samar Link Bridge",
+        130000000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region V > Camarines Sur - Catanduanes Friendship Bridge",
+        86800000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Consultancy Services for the Conduct of Engineering Inspection of the Diosdado Macapagal Bridge",
+        60162000.0,
+        5
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Road Condition and Inventory Surveys, Roughness Surveys, VOC/RUC Surveys and Technology Enhancement for RBIA > Road Inventory Surveys",
+        55166000.0,
+        6
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region VIII > Carigara Coastal Road, Leyte",
+        52350000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > National Road Traffic Survey Program (NRTSP) > Axle Load Survey Program",
+        50000000.0,
+        6
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Road Disaster Prevention and Other Countermeasures on Mountainous Roads under JICA-TCP",
+        50000000.0,
+        5
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region I > Pangasinan East-West Arterial Highway, Pangasinan",
+        48500000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region II > Palanan-Dinalungan Road, Isabela and Aurora (part of Luzon Eastern Seaboard Highway)",
+        40000000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region X > Jct. Aglayan Zambonguita (Cabanglasan) - Sacramento - Concepcion - Jct Bukidnon Davao Road ( Poblacion ) - Bukidnon Airport",
+        37900000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Bridge Management System (BMS) Assessment and Validation Program > Bridge Condition Inspection Survey (Type 2) for all National Bridges",
+        36332000.0,
+        6
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region V > Basud-Sipocot-Cabusao Road",
+        35300000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Negros Island Region > Dumaguete-Malaunay-Dobdob-Mantiquil-Siaton Road (Phase II)",
+        35200000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region IV-A > Marinduque-Quezon Link Expressway (MQLEx)",
+        35000000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region V > Masbate City Coastal Diversion Port Road",
+        33400000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region XIII > NRJ Sarmiento, Trento - Bislig Bypass Road, Agusan del Sur and Surigao del Sur",
+        33400000.0,
+        7
+      ],
+      [
+        ". > Pre-Feasibility Study / Feasibility Study / Preliminary and Detailed Engineering > National Capital Region > Regionwide / Nationwide > Roads and Bridges > Feasibility Studies/ Preliminary and Detailed Engineering/ Economic Analysis/ Technical Studies/ Traffic Impact Assessment > Region IV-A > Talim Island Circumferential Road",
+        33200000.0,
+        7
+      ]
+    ]
+  },
+  {
+    "name": "SUPPORT TO OPERATIONS",
+    "count": 891,
+    "total_amount": 44806466000.0,
+    "avg_amount": 50287840.628507294,
+    "depth_distribution": {
+      "3": 5,
+      "4": 5,
+      "6": 817,
+      "5": 2,
+      "7": 59,
+      "2": 2,
+      "1": 1
+    },
+    "level_2_categories": {
+      "Infrastructure Planning, Design, Construction and Maintenance": 887,
+      "National Capital Region": 1,
+      "Regional Support (Planning and Design, Construction, Maintenance and Material Quality Control and Hydrology Division)": 1,
+      "Testing Materials Needed in Road, Bridge and Building Construction and Other Public Works Projects": 1
+    },
+    "level_3_categories": {
+      "Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities": 883,
+      "Central Office": 1,
+      "Design of Infrastructure Projects": 1,
+      "Preparation of Manuals for Construction, Rehabilitation, & Improvement of Infrastructure Facilities": 1,
+      "Management of Construction and Maintenance Equipment and Ancillary Facilities": 1,
+      "Infrastructure Research, Quality Control and Management, Ancillary Facilities": 1
+    },
+    "level_4_categories": {
+      "Routine Maintenance of National Bridges": 204,
+      "Routine Maintenance of National Roads": 203,
+      "Repair and Maintenance of Road Safety Facilities": 202,
+      "Maintenance Services for Automated Traffic Data Collection Program": 173,
+      "Maintenance, Repair and Rehabilitation of Infrastructure Facilities": 51,
+      "Operation of Weighbridge Stations and ATOME": 44,
+      "Bureau Proper": 1,
+      "Repair/Maintenance of Weighbridge Stations Laybys along National Roads": 1,
+      "Maintenance and Operations of DPWH Floating Equipment": 1,
+      "Repair, Calibration, and Maintenance of Laboratory Equipment": 1
+    },
+    "level_5_categories": {
+      "Region III": 71,
+      "Region V": 68,
+      "Region IV-A": 66,
+      "Region VIII": 61,
+      "Region X": 58,
+      "Cordillera Administrative Region": 50,
+      "Region XI": 48,
+      "Region II": 47,
+      "Region VI": 46,
+      "Region VII": 46
+    },
+    "level_6_categories": {
+      "Nationwide": 16,
+      "Bulacan 1st District Engineering Office": 6,
+      "Nueva Ecija 2nd District Engineering Office": 6,
+      "North Manila District Engineering Office": 5,
+      "South Manila District Engineering Office": 5,
+      "Metro Manila 1st District Engineering Office": 5,
+      "Las Piñas-Muntinlupa District Engineering Office": 5,
+      "Quezon City 1st District Engineering Office": 5,
+      "Quezon City 2nd District Engineering Office": 5,
+      "Tarlac 2nd District Engineering Office": 5
+    },
+    "top_paths": [
+      [
+        ". > SUPPORT TO OPERATIONS > National Capital Region > Central Office",
+        16328233000.0,
+        3
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS",
+        12150000000.0,
+        1
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance and Operations of DPWH Floating Equipment",
+        1341700000.0,
+        4
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Routine Maintenance of National Bridges > Nationwide",
+        500000000.0,
+        5
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Management of Construction and Maintenance Equipment and Ancillary Facilities",
+        177935000.0,
+        3
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Routine Maintenance of National Roads > Region XIII > Agusan del Sur 1st District Engineering Office",
+        121538000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Infrastructure Research, Quality Control and Management, Ancillary Facilities",
+        102104000.0,
+        3
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Routine Maintenance of National Roads > Region I > Ilocos Norte 2nd District Engineering Office",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > National Capital Region",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > Region I",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > Cordillera Administrative Region",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > Region II",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > Region III",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > Region IV-A",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > MIMAROPA Region",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > Region V",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > Region VI",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > Negros Island Region",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > Region VII",
+        100000000.0,
+        6
+      ],
+      [
+        ". > SUPPORT TO OPERATIONS > Infrastructure Planning, Design, Construction and Maintenance > Maintenance, Repair and Rehabilitation of Infrastructure Facilities and Other Related Activities > Maintenance, Repair and Rehabilitation of Infrastructure Facilities > Flood Control and Drainage Systems, Structures and Related Facilities > Region VIII",
+        100000000.0,
+        6
+      ]
+    ]
+  }
+]
