@@ -14,7 +14,7 @@ from openpyxl.cell.cell import Cell
 
 def is_bullet(value: str) -> bool:
     """
-    Check if a value is a bullet/numbering marker (like 'a.', '1.0', '2.0', etc.).
+    Check if a value is a bullet/numbering marker (like 'a.', '1.0', '2.0', '10', '11', etc.).
     Bullets are typically short (1-3 characters) and used for list numbering.
     
     Args:
@@ -49,6 +49,11 @@ def is_bullet(value: str) -> bool:
     
     # Just a single character (like 'a', 'b', '1', '2')
     if len(value) == 1 and (value.isalpha() or value.isdigit()):
+        return True
+    
+    # Short numeric values (2-3 digits) without period (like '10', '11', '12', '99', '100')
+    # These are also used as bullet markers
+    if value.isdigit() and 2 <= len(value) <= 3:
         return True
     
     return False
