@@ -58,6 +58,36 @@ def is_bullet(value: str) -> bool:
     
     return False
 
+def clean_value(value: str) -> str:
+    """
+    Clean up a value extracted from an Excel cell.
+    Removes extra whitespace, normalizes newlines, and handles special formatting.
+    
+    Args:
+        value: Raw value from Excel cell
+    
+    Returns:
+        Cleaned value string
+    """
+    if not value:
+        return ""
+    
+    # Convert to string and strip
+    value = str(value).strip()
+    
+    # Replace newlines and other whitespace characters with a single space
+    # Handle various newline formats (\n, \r\n, \r)
+    import re
+    value = re.sub(r'[\r\n]+', ' ', value)
+    
+    # Replace multiple spaces with a single space
+    value = re.sub(r' +', ' ', value)
+    
+    # Remove leading/trailing spaces again after replacement
+    value = value.strip()
+    
+    return value
+
 def get_cell_formatting(cell: Cell) -> Dict[str, bool]:
     """
     Get formatting information from a cell.
@@ -98,7 +128,7 @@ def find_hierarchy_info(row: List[Cell], start_col: int = 1, amount_col: int = 1
     for i in range(start_col, len(row)):
         cell = row[i] if i < len(row) else None
         if cell and cell.value:
-            value = str(cell.value).strip()
+            value = clean_value(cell.value)
             if is_bullet(value):
                 # Found a bullet - hierarchy level is this column, value is next column
                 value_col = i + 1
@@ -115,7 +145,7 @@ def find_hierarchy_info(row: List[Cell], start_col: int = 1, amount_col: int = 1
     for i in range(start_col, len(row)):
         cell = row[i] if i < len(row) else None
         if cell and cell.value:
-            value = str(cell.value).strip()
+            value = clean_value(cell.value)
             # Make sure it's not a bullet (shouldn't happen, but just in case)
             if not is_bullet(value):
                 # Check formatting
@@ -178,7 +208,7 @@ def parse_hierarchical_xlsx(xlsx_path: Path, value_column: int = 10, start_colum
         if value_col >= len(row) or not row[value_col] or not row[value_col].value:
             continue
         
-        data_value = str(row[value_col].value).strip()
+        data_value = clean_value(row[value_col].value)
         if not data_value:
             continue
         
@@ -201,12 +231,14 @@ def parse_hierarchical_xlsx(xlsx_path: Path, value_column: int = 10, start_colum
             # This is a description row - attach it to the most recent node
             # The most recent node should be the one that this description describes
             if node_stack:
+                # Clean the description value
+                clean_desc = clean_value(data_value)
                 # Add description to the most recent node
                 if "description" not in node_stack[-1]:
-                    node_stack[-1]["description"] = data_value
+                    node_stack[-1]["description"] = clean_desc
                 else:
                     # If description already exists, append to it (in case description spans multiple rows)
-                    node_stack[-1]["description"] += " " + data_value
+                    node_stack[-1]["description"] += " " + clean_desc
             # Skip creating a new node for descriptions
             continue
         
