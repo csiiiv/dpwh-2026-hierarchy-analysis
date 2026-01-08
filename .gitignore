@@ -1,5 +1,5 @@
 # Data files (too large for git)
-data/*.xlsx
+data/*.xlsx*
 data/*.csv
 
 # Python
