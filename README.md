@@ -51,10 +51,28 @@ python scripts/table_to_markdown.py
 
 This will create a markdown sample: `data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy_table_sample.md`
 
+### Analyze Hierarchy Structure
+
 ```bash
-# Analyze hierarchy structure
+# Analyze hierarchy levels and structure
 python scripts/analyze_hierarchy.py
 ```
+
+```bash
+# Analyze patterns and distributions in flattened table
+python scripts/analyze_table_patterns.py
+```
+
+This will create:
+- `data/hierarchy_analysis_results.txt` - Full analysis output
+- `docs/hierarchy_structure_analysis.md` - Formatted analysis with tables and insights
+
+Key analyses include:
+- Depth distribution (8 levels)
+- Regional/district breakdowns (Levels 5-6)
+- Top paths by amount
+- Program category analysis (Level 4)
+- Summary statistics and recommendations
 
 ### View in Web Browser
 
