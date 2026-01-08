@@ -188,100 +188,69 @@
             animation: spin 1s linear infinite;
         }
         
-        .data-preview {
-            padding: 10px;
-            margin-top: 10px;
+        .hierarchy-header {
+            display: none;
+            padding: 10px 15px;
+            background: #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumb {
+            padding: 10px 15px;
             background: #f0f9ff;
             border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumb-item {
+            background: rgba(102, 126, 234, 0.7);
+            color: #4a5568;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .breadcrumb-item:hover {
+            background: rgba(102, 126, 234, 0.9);
+            transform: translateY(-2px);
+        }
+        
+        .breadcrumb-separator {
+            color: #9ca3af;
+            font-size: 16px;
+            padding: 0 8px;
+        }
+        
+        .breadcrumb-clear {
+            padding: 8px 16px;
+            background: rgba(102, 126, 234, 0.85);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
             font-size: 12px;
-            color: #333;
+            transition: all 0.2s;
+            margin-left: 10px;
+        }
+        
+        .breadcrumb-clear:hover {
+            background: rgba(102, 126, 234, 1);
         }
         
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .hierarchy-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 12px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        }
-        
-        .hierarchy-header.hidden {
-            display: none;
-        }
-        
-        .hierarchy-title {
-            color: white;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            opacity: 0.9;
-        }
-        
-        .breadcrumb {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            align-items: center;
-        }
-        
-        .breadcrumb-item {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-            white-space: nowrap;
-            max-width: 200px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .breadcrumb-item:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-1px);
-        }
-        
-        .breadcrumb-separator {
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: bold;
-        }
-        
-        .breadcrumb-item.depth-0 {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .breadcrumb-item.depth-1 {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .breadcrumb-item.depth-2 {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .breadcrumb-item.depth-3 {
-            background: rgba(255, 255, 255, 0.25);
-        }
-        
-        table {
-            border-collapse: collapse;
-        }
-        
-        tbody tr:hover {
-            background: #f0f4ff !important;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -291,6 +260,10 @@
             <h1>🏛️ DPWH 2026 General Appropriations Act</h1>
             <p>Interactive data browser with DuckDB WASM for fast, searchable table views</p>
         </header>
+        
+        <div id="hierarchy-header" class="hierarchy-header">
+            <span id="breadcrumb"></span>
+        </div>
         
         <div class="stats-grid">
             <div class="stat-card">
@@ -350,10 +323,6 @@
         </div>
         
         <div class="table-container">
-            <div id="hierarchy-header" class="hierarchy-header hidden">
-                <div class="hierarchy-title">📁 Current Hierarchy Path</div>
-                <div id="breadcrumb" class="breadcrumb"></div>
-            </div>
             <div class="table-header">
                 <div class="table-info">
                     <h2>📋 Data Table</h2>
@@ -364,64 +333,53 @@
                 </div>
                 <div id="status-bar" class="status-bar status-loading">
                     <span class="loading-spinner"></span>
-                    <span id="status-text">Initializing...</span>
+                    <span id="status-text">Loading...</span>
                 </div>
             </div>
             <div id="duckdb-container"></div>
-            <div id="data-preview" class="data-preview hidden">
-                <div style="display: flex; gap: 10px;">
-                    <span id="preview-count">0 rows</span>
-                    <span> - </span>
-                    <span id="preview-time"></span>
-                </div>
-            </div>
         </div>
     </div>
     
+    <!-- Load DuckDB WASM without module type to avoid MIME/CORS issues -->
+    <script src="https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.1.3/duckdb-browser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.1.3/duckdb-browser-blocking.js"></script>
     <script>
-        // DuckDB WASM - using unpkg CDN that serves correctly
-        const DUCKDB_SCRIPT_URL = 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.1.3/dist/duckdb.wasm';
-        const DUCKDB_JS_URL = 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.1.3/+esm/duckdb-browser.mjs';
+        // DuckDB configuration
+        const PARQUET_FILE_PATH = 'data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_leaf_nodes.parquet';
         
         let db = null;
-        let allData = null;
-        let filteredData = null;
-        let currentQuery = '';
+        let currentParent = null;
+        let currentResults = [];
         let tableCreated = false;
-        let currentParent = null; // Track current parent hierarchy
-        let allResultsCache = null; // Cache for all results
         
-        // Initialize DuckDB
+        // Initialize DuckDB after script loads
         async function initDuckDB() {
             if (db) return;
             
-            let wasmModule = null;
-            let jsModule = null;
+            updateStatus('loading', 'Initializing DuckDB...');
             
             try {
-                // Load WASM and JS modules in correct order
-                [wasmModule, jsModule] = await Promise.all([
-                    fetch(DUCKDB_SCRIPT_URL).then(r => r.arrayBuffer()),
-                    fetch(DUCKDB_JS_URL).then(r => r.text())
-                ]);
+                // Wait a moment for DuckDB to be available
+                await new Promise(resolve => setTimeout(resolve, 100));
                 
-                // Create WebAssembly from WASM response
-                const wasmBuffer = new Uint8Array(wasmModule);
-                const wasmModule = await WebAssembly.compile(wasmBuffer);
+                // Create database instance
+                const logger = new duckdb.ConsoleLogger(duckdb.LogLevel.WARNING);
+                db = new duckdb.AsyncDuckDB(logger, null);
                 
-                // Create a global duckdb object from the JS code
-                const scriptText = jsModule;
-                const duckdbFunction = new Function(scriptText + '\nreturn window.duckdb;');
+                // Load Parquet file
+                const response = await fetch(PARQUET_FILE_PATH);
+                const buffer = await response.arrayBuffer();
                 
-                // Initialize database
-                db = await duckdbFunction();
-                await db.instantiate(wasmModule);
-                
-                // Register Parquet file
-                await db.registerFile({
-                    name: 'dpwh_data',
-                    type: 'parquet',
-                    path: 'data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_leaf_nodes.parquet'
+                await db.instantiate({
+                    instantiateWasm: (imports, successCallback) => {
+                        fetch('https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.1.3/duckdb.wasm')
+                            .then(response => response.arrayBuffer())
+                            .then(bytes => {
+                                const module = WebAssembly.instantiate(bytes, imports);
+                                successCallback(module.instance);
+                            });
+                        return {};
+                    }
                 });
                 
                 // Create a view for better performance
@@ -432,15 +390,25 @@
                         level_6, level_7, level_8, level_9, level_10, level_11,
                         value, description, amount, depth,
                         CONCAT(level_0, ' > ', COALESCE(NULLIF(level_1, '', CONCAT(level_1, ' > ')), '') as path
-                    FROM dpwh_data
+                    FROM read_parquet('${PARQUET_FILE_PATH}')
                 `);
                 
+                // Get total stats
+                const totalStats = await db.query('SELECT COUNT(*) as count, SUM(amount) as total FROM dpwh_view WHERE level_0 = "."');
+                const totalRows = totalStats[0].count;
+                const totalAmount = totalStats[0].total;
+                
+                document.getElementById('total-rows').textContent = totalRows.toLocaleString();
+                document.getElementById('total-amount').textContent = '₱' + totalAmount.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                
                 updateStatus('ready', 'DuckDB WASM initialized successfully');
-                console.log('DuckDB WASM initialized');
+                console.log('DuckDB initialized');
+                
+                tableCreated = true;
                 
             } catch (error) {
                 updateStatus('error', `Failed to initialize: ${error.message}`);
-                console.error('DuckDB WASM initialization error:', error);
+                console.error('DuckDB initialization error:', error);
             }
         }
         
@@ -451,7 +419,7 @@
             try {
                 let query = `
                     SELECT * FROM dpwh_view
-                    WHERE level_0 = '.'
+                    WHERE level_0 = ".'
                 `;
                 
                 const searchValue = document.getElementById('search-input').value.trim();
@@ -474,10 +442,7 @@
                         level_5 ILIKE '%${searchValue}%' OR
                         level_6 ILIKE '%${searchValue}%' OR
                         level_7 ILIKE '%${searchValue}%' OR
-                        level_8 ILIKE '%${searchValue}%' OR
-                        level_9 ILIKE '%${searchValue}%' OR
-                        level_10 ILIKE '%${searchValue}%' OR
-                        level_11 ILIKE '%${searchValue}%'
+                        level_8 ILIKE '%${searchValue}%'
                     )`);
                 }
                 
@@ -491,6 +456,16 @@
                 
                 if (maxAmount) {
                     filters.push(`amount <= ${maxAmount}`);
+                }
+                
+                // Add parent hierarchy filter
+                if (currentParent) {
+                    filters.push(`level_0 = '${currentParent.level_0}'`);
+                    if (currentParent.level_1) filters.push(`level_1 = '${currentParent.level_1}'`);
+                    if (currentParent.level_2) filters.push(`level_2 = '${currentParent.level_2}'`);
+                    if (currentParent.level_3) filters.push(`level_3 = '${currentParent.level_3}'`);
+                    if (currentParent.level_4) filters.push(`level_4 = '${currentParent.level_4}'`);
+                    if (currentParent.level_5) filters.push(`level_5 = '${currentParent.level_5}'`);
                 }
                 
                 if (filters.length > 0) {
@@ -508,6 +483,12 @@
                 console.log(`Query executed in ${queryTime}ms`);
                 console.log('Query:', query);
                 console.log('Results:', result.length);
+                
+                // Store results for row clicks
+                currentResults = result;
+                
+                // Update breadcrumb
+                updateBreadcrumb();
                 
                 // Display results
                 displayResults(result, query, queryTime);
@@ -536,8 +517,8 @@
                 return;
             }
             
-            // Create HTML table with virtual scrolling for performance
-            const tableHtml = `
+            // Create HTML table
+            let html = `
                 <table style="width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed;">
                     <thead>
                         <tr style="background: #f8f9fa; position: sticky; top: 0;">
@@ -558,10 +539,14 @@
                 const amount = row.amount !== null ? row.amount.toLocaleString('en-PH', { minimumFractionDigits: 2 }) : 'N/A';
                 const depth = row.depth || '-';
                 const bgColor = index % 2 === 0 ? '#ffffff' : '#f9fafb';
+                const depthBadge = currentParent && row.depth === currentParent.depth + 1 ? ' 📁' : '';
+                const isLeaf = !row.children || row.children === 0;
+                const leafIndicator = isLeaf && row.path.length < 5 ? '' : '▶';
+                const clickAttr = isLeaf ? `onclick="drillDown(${index})" title="Click to view children"` : `title="This row has no children"`;
                 
-                tableHtml += `
-                    <tr style="background: ${bgColor};">
-                        <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${path}">${path}</td>
+                html += `
+                    <tr style="background: ${bgColor}; ${clickAttr}">
+                        <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${path}">${leafIndicator} ${path}${depthBadge}</td>
                         <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${value}">${value}</td>
                         <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${description}">${description}</td>
                         <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right; font-weight: 500;">${amount}</td>
@@ -570,15 +555,15 @@
                 `;
             });
             
-            tableHtml += `
+            html += `
                     </tbody>
                 </table>
                 <div style="padding: 15px; text-align: center; color: #6c757d; font-size: 13px;">
-                    Showing ${results.length} of ${results.length} rows
+                    Showing ${results.length} rows
                 </div>
             `;
             
-            container.innerHTML = tableHtml;
+            container.innerHTML = html;
             document.getElementById('row-count').textContent = `${results.length} rows`;
         }
         
@@ -598,7 +583,6 @@
         
         // Apply filters
         function applyFilters() {
-            currentQuery = document.getElementById('search-input').value;
             runQuery();
         }
         
@@ -609,6 +593,7 @@
             document.getElementById('min-amount').value = '';
             document.getElementById('max-amount').value = '';
             document.getElementById('limit-rows').value = '100';
+            currentParent = null;
             runQuery();
         }
         
@@ -628,10 +613,126 @@
             text.textContent = message;
         }
         
+        // Update breadcrumb
+        function updateBreadcrumb() {
+            const header = document.getElementById('hierarchy-header');
+            const breadcrumb = document.getElementById('breadcrumb');
+            
+            if (!currentParent) {
+                header.classList.add('hidden');
+                return;
+            }
+            
+            header.classList.remove('hidden');
+            
+            // Build breadcrumb from parent
+            const breadcrumbs = [];
+            if (currentParent.level_0) breadcrumbs.push({ value: currentParent.level_0, depth: 0 });
+            if (currentParent.level_1) breadcrumbs.push({ value: currentParent.level_1, depth: 1 });
+            if (currentParent.level_2) breadcrumbs.push({ value: currentParent.level_2, depth: 2 });
+            if (currentParent.level_3) breadcrumbs.push({ value: currentParent.level_3, depth: 3 });
+            if (currentParent.level_4) breadcrumbs.push({ value: currentParent.level_4, depth: 4 });
+            if (currentParent.level_5) breadcrumbs.push({ value: currentParent.level_5, depth: 5 });
+            
+            // Add "Clear" button
+            breadcrumb.innerHTML = `
+                <button onclick="clearParent()" style="padding: 6px 12px; background: rgba(255,255,255,0.15); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 600; transition: all 0.2s; margin-right: 10px;">
+                    ✕ Clear
+                </button>
+            `;
+            
+            breadcrumbs.forEach((crumb, index) => {
+                const separator = `<span class="breadcrumb-separator">›</span>`;
+                breadcrumb.innerHTML += separator;
+                
+                const isLast = index === breadcrumbs.length - 1;
+                const style = isLast ? 'background: rgba(255,255,255,0.35); font-weight: 600;' : '';
+                
+                breadcrumb.innerHTML += `
+                    <div class="breadcrumb-item" style="${style}"
+                          onclick="navigateToBreadcrumb(${index})"
+                          title="Click to navigate to this level">
+                         ${crumb.value}
+                     </div>
+                `;
+            });
+        }
+        
+        // Drill down into a row's children
+        function drillDown(index) {
+            // Get the row from current results
+            const row = currentResults[index];
+            
+            if (!row) return;
+            
+            // Parse the path to get levels
+            const path = row.path || '';
+            const levels = path.split(' > ').filter(l => l.trim());
+            
+            if (levels.length < 1) return;
+            
+            // Set new parent - drill down one more level
+            currentParent = {
+                level_0: row.level_0 || '',
+                level_1: row.level_1 || '',
+                level_2: row.level_2 || '',
+                level_3: row.level_3 || '',
+                level_4: row.level_4 || '',
+                level_5: row.level_5 || ''
+            };
+            
+            // Re-run query with new parent filter
+            runQuery();
+        }
+        
+        // Navigate to a specific level in breadcrumb
+        function navigateToBreadcrumb(clickedIndex) {
+            // Get all breadcrumb items
+            const breadcrumbItems = document.querySelectorAll('.breadcrumb-item');
+            
+            // Build new parent up to and including the clicked breadcrumb
+            const newParent = {
+                level_0: '',
+                level_1: '',
+                level_2: '',
+                level_3: '',
+                level_4: '',
+                level_5: ''
+            };
+            
+            // Fill in levels up to and including the clicked breadcrumb
+            for (let i = 0; i <= clickedIndex; i++) {
+                const item = breadcrumbItems[i];
+                const depthClass = item.className.match(/depth-(\d+)/);
+                if (depthClass) {
+                    const depth = parseInt(depthClass[1]);
+                    const value = item.textContent.trim();
+                    if (depth === 0) newParent.level_0 = value;
+                    if (depth === 1) newParent.level_1 = value;
+                    if (depth === 2) newParent.level_2 = value;
+                    if (depth === 3) newParent.level_3 = value;
+                    if (depth === 4) newParent.level_4 = value;
+                    if (depth === 5) newParent.level_5 = value;
+                }
+            }
+            
+            // Update current parent
+            currentParent = newParent;
+            
+            // Re-run query
+            runQuery();
+        }
+        
+        // Clear parent filter
+        function clearParent() {
+            currentParent = null;
+            runQuery();
+        }
+        
         // Export to CSV
-        function exportCSV() {
+        async function exportCSV() {
             if (!db) {
-                alert('DuckDB not initialized yet. Please wait...');
+                alert('Please wait for data to load...');
                 return;
             }
             
@@ -642,17 +743,18 @@
             let query = 'SELECT * FROM dpwh_view WHERE level_0 = "."';
             
             if (searchValue) {
-                query += ` AND (value ILIKE '%${searchValue}%' OR description ILIKE '%${searchValue}%' OR level_1 ILIKE '%${searchValue}%' OR level_2 ILIKE '%${searchValue}%')`;
+                query += ` AND (value ILIKE '%${searchValue}%' OR description ILIKE '%${searchValue}%')`;
             }
             
             query += ` LIMIT ${limitRows}`;
             
             updateStatus('loading', 'Exporting data to CSV...');
             
-            db.query(query).then(results => {
+            try {
+                const result = await db.query(query);
                 const csv = [
                     ['Path', 'Value', 'Description', 'Amount', 'Depth'],
-                    ...results.map(r => [
+                    ...result.map(r => [
                         r.path || '',
                         r.value || '',
                         r.description || '',
@@ -670,16 +772,24 @@
                 a.click();
                 URL.revokeObjectURL(url);
                 
-                updateStatus('ready', `Exported ${results.length} rows to CSV`);
-            }).catch(error => {
+                updateStatus('ready', `Exported ${result.length} rows to CSV`);
+            } catch (error) {
                 updateStatus('error', `Export failed: ${error.message}`);
-                console.error('Export error:', error);
-            });
+            }
         }
+        
+        // Expose functions to global scope for HTML onclick handlers
+        window.applyFilters = applyFilters;
+        window.resetFilters = resetFilters;
+        window.sortBy = sortBy;
+        window.drillDown = drillDown;
+        window.navigateToBreadcrumb = navigateToBreadcrumb;
+        window.clearParent = clearParent;
+        window.exportCSV = exportCSV;
         
         // Initialize on load
         window.addEventListener('DOMContentLoaded', async () => {
-            updateStatus('loading', 'Loading DuckDB WASM modules...');
+            updateStatus('loading', 'Initializing DuckDB WASM...');
             await initDuckDB();
             
             // Load initial data
