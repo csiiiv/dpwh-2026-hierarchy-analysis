@@ -4,12 +4,20 @@ This project contains scripts to convert Excel data to hierarchical JSON and a w
 
 ## Files
 
-- `scripts/xlsx_to_csv.py` - Converts XLSX to CSV format
-- `scripts/extract_unique_values.py` - Extracts unique values from columns 0-9
-- `scripts/build_hierarchy.py` - Builds hierarchy from CSV (legacy)
-- `scripts/build_hierarchy_from_xlsx.py` - Builds hierarchy from XLSX with formatting awareness
+### Hierarchy Generation
+- `scripts/build_hierarchy_from_xlsx.py` - Builds hierarchy from XLSX with formatting awareness (recommended)
+- `scripts/archive/build_hierarchy.py` - Legacy hierarchy builder from CSV
+- `scripts/archive/xlsx_to_csv.py` - Converts XLSX to CSV format
+- `scripts/archive/extract_unique_values.py` - Extracts unique values from columns
+
+### Table Flattening
+- `scripts/hierarchy_to_table.py` - Converts hierarchical JSON to flat table (CSV/JSON)
+- `scripts/table_to_markdown.py` - Generates markdown documentation from table data
+- `scripts/analyze_hierarchy.py` - Analyzes hierarchy structure statistics
+
+### Visualization
 - `index.html` - Interactive web interface to explore the hierarchy
-- `data/` - Contains the source XLSX file and generated JSON files
+- `data/` - Contains the source XLSX file and generated files (JSON, CSV, Markdown)
 
 ## Usage
 
@@ -24,6 +32,29 @@ python scripts/build_hierarchy_from_xlsx.py
 ```
 
 This will create `data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy.json`
+
+### Generate Flattened Table
+
+```bash
+# Flatten hierarchy to CSV and JSON table formats
+python scripts/hierarchy_to_table.py
+```
+
+This will create:
+- `data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy_table.csv` - CSV format
+- `data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy_table.json` - JSON table format
+
+```bash
+# Generate markdown documentation from table
+python scripts/table_to_markdown.py
+```
+
+This will create a markdown sample: `data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy_table_sample.md`
+
+```bash
+# Analyze hierarchy structure
+python scripts/analyze_hierarchy.py
+```
 
 ### View in Web Browser
 
