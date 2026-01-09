@@ -26,6 +26,11 @@
             position: sticky;
             top: 0;
             z-index: 1002;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .header.hidden-mobile {
+            transform: translateY(-100%);
         }
 
         .header h1 {
@@ -561,6 +566,8 @@
         let expandedNodes = new Set(); // Track expanded node IDs
         let currentViewNode = null; // Track the currently visible node
         let scrollTimeout = null; // Scroll event throttling
+        let lastScrollY = 0; // Track last scroll position for header hide/show
+        let isMobile = false; // Track if we're in mobile view
 
         // Format number with commas
         function formatNumber(num) {
@@ -704,13 +711,43 @@
                 const breadcrumb = document.querySelector('.breadcrumb');
 
                 if (header && controls && breadcrumb) {
-                    const headerHeight = header.offsetHeight;
+                    const headerHeight = header.classList.contains('hidden-mobile') ? 0 : header.offsetHeight;
                     const controlsHeight = controls.offsetHeight;
 
                     controls.style.top = `${headerHeight}px`;
                     breadcrumb.style.top = `${headerHeight + controlsHeight}px`;
                 }
             }
+        }
+
+        // Handle header show/hide on scroll (mobile only)
+        function handleHeaderScroll() {
+            if (!isMobile) return;
+
+            const currentScrollY = window.scrollY;
+            const header = document.querySelector('.header');
+
+            if (header) {
+                // Hide header when scrolling down, show when scrolling up
+                // Only hide if scrolled more than 100px down
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    // Scrolling down - hide header
+                    header.classList.add('hidden-mobile');
+                } else if (currentScrollY < lastScrollY) {
+                    // Scrolling up - show header
+                    header.classList.remove('hidden-mobile');
+                }
+
+                lastScrollY = currentScrollY;
+
+                // Update sticky positions after header state change
+                updateStickyPositions();
+            }
+        }
+
+        // Update mobile state
+        function updateMobileState() {
+            isMobile = window.innerWidth <= 768;
         }
 
         // Render the hierarchy tree
@@ -749,6 +786,9 @@
             window.addEventListener('scroll', () => {
                 console.log(`[Breadcrumb] Scroll event detected`);
 
+                // Handle header show/hide on mobile
+                handleHeaderScroll();
+
                 // Debounce scroll events
                 if (scrollTimeout) {
                     return;
@@ -762,6 +802,7 @@
 
             // Update sticky positions on window resize
             window.addEventListener('resize', () => {
+                updateMobileState();
                 updateStickyPositions();
             });
 
@@ -931,6 +972,7 @@
 
         // Load data on page load
         console.log(`[Breadcrumb] Page loaded, starting to load data...`);
+        updateMobileState();
         loadData();
     </script>
 </body>
