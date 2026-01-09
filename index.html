@@ -45,6 +45,13 @@
             margin: 0.25rem 0 0;
         }
 
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         .header a {
             color: white;
             text-decoration: none;
@@ -383,14 +390,20 @@
                 font-size: 0.75rem;
             }
 
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
             .header a {
                 font-size: 0.75rem;
                 padding: 0.35rem 0.5rem;
-                margin-left: 0.5rem;
+                margin-left: 0;
             }
 
-            .header div {
-                gap: 0.5rem;
+            .header a:last-child {
+                margin-top: -0.25rem; /* Pull GitHub button closer */
             }
 
             .controls {
@@ -509,7 +522,7 @@
 </head>
 <body>
     <div class="header">
-        <div style="display: flex; align-items: center; gap: 1rem;">
+        <div class="header-content">
             <h1>DPWH 2026 GAA Hierarchy Explorer</h1>
             <p style="margin: 0;">Explore the hierarchical structure of the DPWH 2026 General Appropriations Act</p>
             <a href="./tables/" target="_self" rel="noopener noreferrer">
