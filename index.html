@@ -134,6 +134,12 @@
             cursor: pointer;
             transition: background-color 0.2s;
             user-select: none;
+            touch-action: manipulation; /* Improve mobile tap response */
+        }
+
+        .node-header:active {
+            transform: scale(0.98); /* Visual feedback on mobile tap */
+            background: #e8e8f8;
         }
 
         .node-header:hover {
@@ -238,6 +244,11 @@
             background: white;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             border-bottom: 2px solid #667eea;
+            transition: top 0.3s;
+        }
+
+        .breadcrumb.mobile-hidden {
+            top: -100%; /* Hide off-screen when mobile menu is active */
         }
 
         .breadcrumb-container {
@@ -316,40 +327,96 @@
             border-left: 4px solid #ff9800;
         }
 
+        .mobile-only {
+            display: none;
+        }
+
         @media (max-width: 768px) {
+            .header {
+                padding: 0.5rem 1rem;
+            }
+
             .header h1 {
-                font-size: 1.5rem;
+                font-size: 1.25rem;
+            }
+
+            .header p {
+                font-size: 0.75rem;
+            }
+
+            .header a {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.5rem;
+                margin-left: 0.5rem;
+            }
+
+            .header div {
+                gap: 0.5rem;
             }
 
             .controls {
                 flex-direction: column;
                 align-items: stretch;
+                gap: 0.5rem;
             }
 
-            .search-box {
-                min-width: 100%;
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .breadcrumb {
+                top: 60px; /* Adjust for smaller mobile elements */
+            }
+
+            .breadcrumb-container {
+                padding: 0.35rem 0.75rem;
+            }
+
+            .breadcrumb-label {
+                font-size: 0.75rem;
+            }
+
+            .breadcrumb-path {
+                font-size: 0.75rem;
+            }
+
+            .breadcrumb-separator {
+                margin: 0 0.15rem;
+            }
+
+            .breadcrumb-item {
+                font-size: 0.75rem;
+                padding: 0.2rem 0.4rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .tree {
+                padding: 1rem;
             }
 
             .node-header {
                 flex-wrap: wrap;
+                padding: 0.6rem;
+                gap: 0.35rem;
+            }
+
+            .node-title {
+                font-size: 0.9rem;
+                flex: 1;
             }
 
             .node-amount {
-                margin-left: 0;
-                margin-top: 0.5rem;
-                width: 100%;
-            }
-
-            .breadcrumb-container {
-                padding: 0.5rem 1rem;
-            }
-
-            .breadcrumb-label {
-                font-size: 0.875rem;
-            }
-
-            .breadcrumb-item {
                 font-size: 0.8rem;
+                padding: 0.2rem 0.5rem;
+            }
+
+            .node-description {
+                font-size: 0.8rem;
+                padding: 0.5rem;
             }
         }
     </style>
@@ -374,14 +441,18 @@
         <div class="stats">
             <span id="nodeCount">Nodes: 0</span>
         </div>
+        <!-- Mobile-only toggle button (hidden on desktop) -->
+        <button id="mobileToggleBtn" class="btn btn-secondary mobile-only" style="display: none;" onclick="toggleMobileMenu()">
+            ☰ Menu
+        </button>
     </div>
 
     <!-- Sticky breadcrumb navigation -->
     <div id="breadcrumb" class="breadcrumb">
         <div class="breadcrumb-container">
-            <span class="breadcrumb-label">Current Path:</span>
+            
             <div id="breadcrumbPath" class="breadcrumb-path">
-                <span class="breadcrumb-root">DPWH 2026 GAA</span>
+                <span class="breadcrumb-root">Current Path:</span>
             </div>
         </div>
     </div>
@@ -527,6 +598,17 @@
             expandedNodes.clear();
         }
 
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const breadcrumb = document.getElementById('breadcrumb');
+            const controls = document.getElementById('controls');
+            const tree = document.getElementById('tree');
+
+            breadcrumb.classList.toggle('mobile-hidden');
+            controls.classList.toggle('mobile-hidden');
+            tree.classList.toggle('mobile-hidden');
+        }
+
         // Render the hierarchy tree
         function renderTree() {
             nodeCount = 0;
@@ -582,9 +664,20 @@
             const allHeaders = document.querySelectorAll('.node-header');
             const viewportTop = 0;
             const viewportBottom = window.innerHeight;
-            const stickyOffset = 120; // Account for header + controls + breadcrumb
+
+            // Calculate dynamic sticky offset from actual element heights
+            const headerEl = document.querySelector('.header');
+            const controlsEl = document.querySelector('.controls');
+            const breadcrumbEl = document.querySelector('.breadcrumb');
+
+            const headerHeight = headerEl ? headerEl.offsetHeight : 0;
+            const controlsHeight = controlsEl ? controlsEl.offsetHeight : 0;
+            const breadcrumbHeight = breadcrumbEl ? breadcrumbEl.offsetHeight : 0;
+
+            const stickyOffset = headerHeight + controlsHeight + breadcrumbHeight;
 
             console.log(`[Breadcrumb] Checking ${allHeaders.length} headers for first visible one`);
+            console.log(`[Breadcrumb] Sticky heights - header: ${headerHeight}px, controls: ${controlsHeight}px, breadcrumb: ${breadcrumbHeight}px, total: ${stickyOffset}px`);
             console.log(`[Breadcrumb] Viewport: ${viewportTop}px to ${viewportBottom}px, sticky offset: ${stickyOffset}px`);
 
             if (allHeaders.length === 0) {
@@ -662,19 +755,31 @@
         function updateBreadcrumbFromPath(path) {
             const breadcrumbPath = document.getElementById('breadcrumbPath');
 
-            // Build breadcrumb HTML
-            let html = '<span class="breadcrumb-root">DPWH 2026 GAA</span>';
+            // Build breadcrumb HTML excluding leaf nodes (nodes with no children)
+            // Only show ancestors that themselves have children
+            let html = '<span class="breadcrumb-root">Current Path</span>';
             path.forEach((item, index) => {
-                html += '<span class="breadcrumb-separator">›</span>';
-                if (item.amount !== null && item.amount !== undefined) {
-                    html += `<span class="breadcrumb-item amount" title="${item.value}: ₱${formatNumber(item.amount)}" onclick="scrollToNode('${item.nodeId}')">${item.value}</span>`;
+                // Check if this node has children by looking up the path
+                // A node has children if there's a later node in the path that's a child
+                const hasChildren = index < path.length - 1;
+
+                if (hasChildren) {
+                    html += '<span class="breadcrumb-separator">›</span>';
+                    if (item.amount !== null && item.amount !== undefined) {
+                        html += `<span class="breadcrumb-item amount" title="${item.value}: ₱${formatNumber(item.amount)}" onclick="scrollToNode('${item.nodeId}')">${item.value}</span>`;
+                    } else {
+                        html += `<span class="breadcrumb-item" title="${item.value}" onclick="scrollToNode('${item.nodeId}')">${item.value}</span>`;
+                    }
                 } else {
-                    html += `<span class="breadcrumb-item" title="${item.value}" onclick="scrollToNode('${item.nodeId}')">${item.value}</span>`;
+                    console.log(`[Breadcrumb] Skipping leaf node: ${item.value} (no children)`);
                 }
             });
 
             breadcrumbPath.innerHTML = html;
-            console.log(`[Breadcrumb] Updated breadcrumb: ${path.map(p => p.value).join(' > ')}`);
+            const displayedItems = path.filter((item, index) => {
+                return index < path.length - 1;
+            });
+            console.log(`[Breadcrumb] Updated breadcrumb: ${displayedItems.map(p => p.value).join(' > ')} (showing ${displayedItems.length} of ${path.length} total, ${path.length - displayedItems.length} leaf nodes skipped)`);
         }
 
         // Load JSON data
