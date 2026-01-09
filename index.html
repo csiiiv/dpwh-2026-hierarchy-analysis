@@ -278,7 +278,7 @@
             margin: 0 auto;
             padding: 0.5rem 2rem;
             display: flex;
-            align-items: center;
+            align-items: stretch;
             gap: 0.5rem;
             overflow-x: auto;
         }
@@ -597,9 +597,11 @@
         let nodePathMap = new Map(); // Map node ID to its path
         let expandedNodes = new Set(); // Track expanded node IDs
         let currentViewNode = null; // Track the currently visible node
+        let currentViewNodeTop = null; // Track the current node's top position for hysteresis
         let scrollTimeout = null; // Scroll event throttling
         let lastScrollY = 0; // Track last scroll position for header hide/show
         let isMobile = false; // Track if we're in mobile view
+        const HYSTERESIS_THRESHOLD = 30; // Pixels threshold for switching to new node (prevents chatter)
 
         // Format number with commas
         function formatNumber(num) {
@@ -671,17 +673,27 @@
                 header.classList.add('expanded');
                 expandedNodes.add(nodeId);
             }
+
+            // Reset current view node after toggling to allow hysteresis to work correctly
+            setTimeout(() => {
+                resetCurrentViewNode();
+                updateBreadcrumbForCurrentView();
+            }, 100);
         }
 
         // Scroll to a breadcrumb item
         function scrollToNode(nodeId) {
             const header = document.querySelector(`[data-node-id="${nodeId}"] .node-header`);
             if (header) {
+                // Reset current view node before scrolling
+                resetCurrentViewNode();
                 header.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 // Flash the node
                 header.style.background = '#fff9c4';
                 setTimeout(() => {
                     header.style.background = '';
+                    // Update breadcrumb after scroll completes
+                    updateBreadcrumbForCurrentView();
                 }, 1000);
             }
         }
@@ -706,6 +718,12 @@
                     expandedNodes.add(nodeId);
                 }
             });
+
+            // Reset current view node after expanding
+            setTimeout(() => {
+                resetCurrentViewNode();
+                updateBreadcrumbForCurrentView();
+            }, 100);
         }
 
         // Collapse all nodes
@@ -722,6 +740,12 @@
             });
 
             expandedNodes.clear();
+
+            // Reset current view node after collapsing
+            setTimeout(() => {
+                resetCurrentViewNode();
+                updateBreadcrumbForCurrentView();
+            }, 100);
         }
 
         // Toggle mobile menu
@@ -864,6 +888,7 @@
             console.log(`[Breadcrumb] Checking ${allHeaders.length} headers for first visible one`);
             console.log(`[Breadcrumb] Sticky heights - header: ${headerHeight}px, controls: ${controlsHeight}px, breadcrumb: ${breadcrumbHeight}px, total: ${stickyOffset}px`);
             console.log(`[Breadcrumb] Viewport: ${viewportTop}px to ${viewportBottom}px, sticky offset: ${stickyOffset}px`);
+            console.log(`[Breadcrumb] Current node: ${currentViewNode} at ${currentViewNodeTop?.toFixed(0)}px, threshold: ${HYSTERESIS_THRESHOLD}px`);
 
             if (allHeaders.length === 0) {
                 console.error(`[Breadcrumb] No headers found!`);
@@ -906,6 +931,29 @@
                 return;
             }
 
+            // Apply hysteresis: only update if new node is significantly different from current
+            // This prevents chatter when scrolling between two nodes
+            if (currentViewNodeTop !== null) {
+                const positionDiff = topmostPosition - currentViewNodeTop;
+
+                // If difference is less than threshold, don't update (prevents chatter)
+                if (Math.abs(positionDiff) < HYSTERESIS_THRESHOLD) {
+                    console.log(`[Breadcrumb] Hysteresis: diff ${positionDiff.toFixed(0)}px < threshold ${HYSTERESIS_THRESHOLD}px, skipping update`);
+                    return;
+                }
+
+                // If scrolling down, require new node to be significantly below current
+                // If scrolling up, require new node to be significantly above current
+                if (positionDiff > 0 && positionDiff < HYSTERESIS_THRESHOLD) {
+                    console.log(`[Breadcrumb] Hysteresis: scrolling down but ${positionDiff.toFixed(0)}px < ${HYSTERESIS_THRESHOLD}px, skipping`);
+                    return;
+                }
+                if (positionDiff < 0 && positionDiff > -HYSTERESIS_THRESHOLD) {
+                    console.log(`[Breadcrumb] Hysteresis: scrolling up but ${positionDiff.toFixed(0)}px > -${HYSTERESIS_THRESHOLD}px, skipping`);
+                    return;
+                }
+            }
+
             // Only update if different from current
             if (headerNodeId === currentViewNode) {
                 console.log(`[Breadcrumb] No update needed - still on ${nodeName} (${headerNodeId})`);
@@ -931,9 +979,17 @@
                 console.log(`[Breadcrumb] Updating breadcrumb with ${path.length} items: ${path.map(p => p.value).join(' > ')}`);
                 updateBreadcrumbFromPath(path);
                 currentViewNode = headerNodeId;
+                currentViewNodeTop = topmostPosition; // Update current node position for hysteresis
             } else {
                 console.error(`[Breadcrumb] No path found for node ${headerNodeId}`);
             }
+        }
+
+        // Reset current view node (call this when expanding/collapsing nodes)
+        function resetCurrentViewNode() {
+            console.log(`[Breadcrumb] Resetting current view node for hysteresis`);
+            currentViewNode = null;
+            currentViewNodeTop = null;
         }
 
         // Update breadcrumb from a specific path
