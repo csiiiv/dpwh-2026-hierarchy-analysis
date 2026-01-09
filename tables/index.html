@@ -3,809 +3,640 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DPWH 2026 GAA - Interactive Data Browser</title>
+    <title>DPWH 2026 GAA - Leaf Nodes Table</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background: #f5f7fa;
-            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
         }
-        
-        .container {
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
+
+        .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            font-weight: 600;
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
-        
-        header p {
-            margin: 10px 0 0;
-            font-size: 14px;
+
+        .header p {
             opacity: 0.9;
         }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            transition: background 0.3s;
         }
-        
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+        .header a:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
-        
-        .stat-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 14px;
-            color: #667eea;
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-        
-        .stat-card .value {
-            font-size: 32px;
-            font-weight: 700;
-            color: #1f2937;
-        }
-        
+
         .controls {
             background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        
-        .controls-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            align-items: end;
-        }
-        
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .control-group label {
-            font-weight: 600;
-            font-size: 13px;
-            color: #4a5568;
-        }
-        
-        input[type="text"], select {
-            padding: 12px 16px;
-            border: 2px solid #e2e8f0;
+            padding: 1.5rem;
             border-radius: 8px;
-            font-size: 14px;
-            width: 100%;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
         }
-        
-        input[type="text"]:focus, select:focus {
+
+        .controls-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 12px rgba(102, 126, 234, 0.2);
         }
-        
-        .table-container {
+
+        .column-filter {
+            min-width: 200px;
+        }
+
+        .column-filter select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-            margin-bottom: 20px;
+            cursor: pointer;
         }
-        
-        .table-header {
-            padding: 15px 20px;
-            background: #f8f9fa;
-            border-bottom: 2px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
+
+        .limit-filter {
+            min-width: 150px;
         }
-        
-        .table-info {
-            display: flex;
-            gap: 20px;
-            align-items: center;
+
+        .limit-filter select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
         }
-        
-        .table-info span {
-            padding: 5px 12px;
-            background: #667eea;
-            color: white;
-            border-radius: 20px;
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
             font-weight: 600;
         }
-        
-        .table-header h2 {
-            margin: 0;
-            font-size: 20px;
-            color: #1f2937;
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
         }
-        
-        #duckdb-container {
-            width: 100%;
-            height: 600px;
-            overflow: auto;
+
+        .btn-primary:hover {
+            background: #5568d3;
         }
-        
-        .status-bar {
-            padding: 10px 15px;
-            background: #e9ecef;
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
             border-radius: 8px;
-            font-size: 13px;
-            color: #495057;
-            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 200px;
         }
-        
-        .status-ready {
-            background: #d4edda;
-            color: #155724;
+
+        .stat-card h3 {
+            font-size: 0.875rem;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
-        
-        .status-loading {
-            background: #fff3cd;
-            color: #856404;
+
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
         }
-        
-        .status-error {
-            background: #f8d7da;
-            color: #721c24;
+
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
-        
-        .loading-spinner {
+
+        .table-wrapper {
+            overflow-x: auto;
+            max-height: 70vh;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+            z-index: 10;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 2px solid #e0e0e0;
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        th:hover {
+            background: #e9ecef;
+        }
+
+        th.sort-asc::after {
+            content: ' ▲';
+            color: #667eea;
+        }
+
+        th.sort-desc::after {
+            content: ' ▼';
+            color: #667eea;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            white-space: nowrap;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .pagination button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e0e0e0;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination .page-info {
+            padding: 0 1rem;
+            color: #666;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            color: #666;
+        }
+
+        .loading::after {
+            content: '';
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e0e0e0;
+            border-top-color: #667eea;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-        
-        .hierarchy-header {
-            display: none;
-            padding: 10px 15px;
-            background: #e9ecef;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .breadcrumb {
-            padding: 10px 15px;
-            background: #f0f9ff;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            display: none;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .breadcrumb-item {
-            background: rgba(102, 126, 234, 0.7);
-            color: #4a5568;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        
-        .breadcrumb-item:hover {
-            background: rgba(102, 126, 234, 0.9);
-            transform: translateY(-2px);
-        }
-        
-        .breadcrumb-separator {
-            color: #9ca3af;
-            font-size: 16px;
-            padding: 0 8px;
-        }
-        
-        .breadcrumb-clear {
-            padding: 8px 16px;
-            background: rgba(102, 126, 234, 0.85);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.2s;
-            margin-left: 10px;
-        }
-        
-        .breadcrumb-clear:hover {
-            background: rgba(102, 126, 234, 1);
-        }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>DPWH 2026 GAA - Leaf Nodes Table</h1>
+        <p>Explore and search through the DPWH 2026 GAA leaf nodes data</p>
+        <a href="../index.html">← Back to Hierarchy Explorer</a>
+    </div>
+
     <div class="container">
-        <header>
-            <h1>🏛️ DPWH 2026 General Appropriations Act</h1>
-            <p>Interactive data browser with DuckDB WASM for fast, searchable table views</p>
-        </header>
-        
-        <div id="hierarchy-header" class="hierarchy-header">
-            <span id="breadcrumb"></span>
-        </div>
-        
-        <div class="stats-grid">
+        <div class="stats">
             <div class="stat-card">
-                <h3>📊 Total Rows</h3>
-                <div class="value" id="total-rows">Loading...</div>
+                <h3>Total Rows</h3>
+                <div class="value" id="totalRows">-</div>
             </div>
             <div class="stat-card">
-                <h3>💰 Total Amount</h3>
-                <div class="value" id="total-amount">Loading...</div>
+                <h3>Total Columns</h3>
+                <div class="value" id="totalColumns">-</div>
             </div>
             <div class="stat-card">
-                <h3>📁 Data File</h3>
-                <div class="value" style="font-size: 16px;">leaf_nodes.parquet</div>
+                <h3>Displayed</h3>
+                <div class="value" id="displayedRows">-</div>
             </div>
         </div>
-        
+
         <div class="controls">
-            <h2 style="margin-bottom: 20px;">🔍 Search & Filter Controls</h2>
-            <div class="controls-grid">
-                <div class="control-group">
-                    <label for="search-input">Search Values</label>
-                    <input type="text" id="search-input" placeholder="Search all columns... (e.g., Region, Project, Description)">
+            <div class="controls-row">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search across all columns...">
                 </div>
-                <div class="control-group">
-                    <label for="level-filter">Filter by Depth</label>
-                    <select id="level-filter">
-                        <option value="">All Levels</option>
-                        <option value="2">Depth 2</option>
-                        <option value="3">Depth 3</option>
-                        <option value="4">Depth 4</option>
-                        <option value="5">Depth 5</option>
-                        <option value="6">Depth 6</option>
-                        <option value="7">Depth 7</option>
-                        <option value="8">Depth 8</option>
-                        <option value="9">Depth 9</option>
-                        <option value="10">Depth 10+</option>
+                <div class="column-filter">
+                    <select id="columnFilter">
+                        <option value="">All Columns</option>
                     </select>
                 </div>
-                <div class="control-group">
-                    <label for="min-amount">Min Amount</label>
-                    <input type="text" id="min-amount" placeholder="e.g., 10000000">
+                <div class="limit-filter">
+                    <select id="limitFilter">
+                        <option value="10">10 rows</option>
+                        <option value="25" selected>25 rows</option>
+                        <option value="50">50 rows</option>
+                        <option value="100">100 rows</option>
+                    </select>
                 </div>
-                <div class="control-group">
-                    <label for="max-amount">Max Amount</label>
-                    <input type="text" id="max-amount" placeholder="e.g., 100000000">
-                </div>
-                <div class="control-group">
-                    <label for="limit-rows">Limit Rows</label>
-                    <input type="number" id="limit-rows" value="100" min="1" max="10000">
-                </div>
-                <div class="control-group">
-                    <label>&nbsp;</label>
-                    <button onclick="applyFilters()" style="padding: 12px 24px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px;">Apply Filters</button>
-                    <button onclick="resetFilters()" style="padding: 12px 24px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px;">Reset</button>
-                </div>
+                <button class="btn btn-primary" id="searchBtn">Search</button>
+                <button class="btn btn-secondary" id="resetBtn">Reset</button>
             </div>
         </div>
-        
+
+        <div id="error" class="error" style="display: none;"></div>
+
         <div class="table-container">
-            <div class="table-header">
-                <div class="table-info">
-                    <h2>📋 Data Table</h2>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <span id="row-count">0 rows</span>
-                        <button onclick="exportCSV()" style="padding: 8px 16px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px;">📥 Export CSV</button>
-                    </div>
-                </div>
-                <div id="status-bar" class="status-bar status-loading">
-                    <span class="loading-spinner"></span>
-                    <span id="status-text">Loading...</span>
-                </div>
+            <div class="table-wrapper">
+                <div id="loading" class="loading">Loading data...</div>
+                <table id="dataTable" style="display: none;">
+                    <thead id="tableHead"></thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
             </div>
-            <div id="duckdb-container"></div>
+            <div class="pagination" id="pagination" style="display: none;">
+                <button id="firstPage">First</button>
+                <button id="prevPage">Previous</button>
+                <span class="page-info" id="pageInfo"></span>
+                <button id="nextPage">Next</button>
+                <button id="lastPage">Last</button>
+            </div>
         </div>
     </div>
-    
-    <!-- Load DuckDB WASM without module type to avoid MIME/CORS issues -->
-    <script src="https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.1.3/duckdb-browser.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.1.3/duckdb-browser-blocking.js"></script>
+
     <script>
-        // DuckDB configuration
-        const PARQUET_FILE_PATH = 'data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_leaf_nodes.parquet';
-        
-        let db = null;
-        let currentParent = null;
-        let currentResults = [];
-        let tableCreated = false;
-        
-        // Initialize DuckDB after script loads
-        async function initDuckDB() {
-            if (db) return;
-            
-            updateStatus('loading', 'Initializing DuckDB...');
-            
+        // Data store
+        let tableData = { rows: [], columns: [] };
+        let filteredData = [];
+        let currentPage = 1;
+        let currentSort = { column: null, direction: null };
+        let currentSearch = '';
+        let currentColumn = '';
+        let currentLimit = 25;
+
+        // Load JSON data
+        async function loadData() {
             try {
-                // Wait a moment for DuckDB to be available
-                await new Promise(resolve => setTimeout(resolve, 100));
+                const response = await fetch('../data/leaf_nodes.json');
+                if (!response.ok) {
+                    throw new Error(`Failed to load data: ${response.statusText}`);
+                }
                 
-                // Create database instance
-                const logger = new duckdb.ConsoleLogger(duckdb.LogLevel.WARNING);
-                db = new duckdb.AsyncDuckDB(logger, null);
+                const jsonData = await response.json();
                 
-                // Load Parquet file
-                const response = await fetch(PARQUET_FILE_PATH);
-                const buffer = await response.arrayBuffer();
+                // Convert from column-oriented to row-oriented format
+                const columns = Object.keys(jsonData);
+                const rowCount = columns.length > 0 ? jsonData[columns[0]].length : 0;
+                const rows = [];
                 
-                await db.instantiate({
-                    instantiateWasm: (imports, successCallback) => {
-                        fetch('https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.1.3/duckdb.wasm')
-                            .then(response => response.arrayBuffer())
-                            .then(bytes => {
-                                const module = WebAssembly.instantiate(bytes, imports);
-                                successCallback(module.instance);
-                            });
-                        return {};
-                    }
+                for (let i = 0; i < rowCount; i++) {
+                    const row = {};
+                    columns.forEach(col => {
+                        row[col] = jsonData[col][i];
+                    });
+                    rows.push(row);
+                }
+                
+                tableData = { rows, columns };
+                filteredData = rows;
+                
+                // Update stats
+                document.getElementById('totalRows').textContent = rowCount.toLocaleString();
+                document.getElementById('totalColumns').textContent = columns.length;
+                
+                // Populate column filter
+                const columnFilter = document.getElementById('columnFilter');
+                columns.forEach(col => {
+                    const option = document.createElement('option');
+                    option.value = col;
+                    option.textContent = col;
+                    columnFilter.appendChild(option);
                 });
                 
-                // Create a view for better performance
-                await db.run(`
-                    CREATE OR REPLACE VIEW dpwh_view AS 
-                    SELECT 
-                        level_0, level_1, level_2, level_3, level_4, level_5, 
-                        level_6, level_7, level_8, level_9, level_10, level_11,
-                        value, description, amount, depth,
-                        CONCAT(level_0, ' > ', COALESCE(NULLIF(level_1, '', CONCAT(level_1, ' > ')), '') as path
-                    FROM read_parquet('${PARQUET_FILE_PATH}')
-                `);
-                
-                // Get total stats
-                const totalStats = await db.query('SELECT COUNT(*) as count, SUM(amount) as total FROM dpwh_view WHERE level_0 = "."');
-                const totalRows = totalStats[0].count;
-                const totalAmount = totalStats[0].total;
-                
-                document.getElementById('total-rows').textContent = totalRows.toLocaleString();
-                document.getElementById('total-amount').textContent = '₱' + totalAmount.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                
-                updateStatus('ready', 'DuckDB WASM initialized successfully');
-                console.log('DuckDB initialized');
-                
-                tableCreated = true;
+                // Display data
+                displayData();
                 
             } catch (error) {
-                updateStatus('error', `Failed to initialize: ${error.message}`);
-                console.error('DuckDB initialization error:', error);
+                console.error('Error loading data:', error);
+                showError(`Failed to load data: ${error.message}`);
             }
         }
-        
-        // Execute query with filters
-        async function runQuery() {
-            if (!db) return;
+
+        // Filter data
+        function filterData() {
+            const search = currentSearch.toLowerCase().trim();
             
-            try {
-                let query = `
-                    SELECT * FROM dpwh_view
-                    WHERE level_0 = ".'
-                `;
-                
-                const searchValue = document.getElementById('search-input').value.trim();
-                const levelFilter = document.getElementById('level-filter').value;
-                const minAmount = document.getElementById('min-amount').value.trim();
-                const maxAmount = document.getElementById('max-amount').value.trim();
-                const limitRows = document.getElementById('limit-rows').value;
-                
-                // Add filters
-                const filters = [];
-                
-                if (searchValue) {
-                    filters.push(`(
-                        value ILIKE '%${searchValue}%' OR
-                        description ILIKE '%${searchValue}%' OR
-                        level_1 ILIKE '%${searchValue}%' OR
-                        level_2 ILIKE '%${searchValue}%' OR
-                        level_3 ILIKE '%${searchValue}%' OR
-                        level_4 ILIKE '%${searchValue}%' OR
-                        level_5 ILIKE '%${searchValue}%' OR
-                        level_6 ILIKE '%${searchValue}%' OR
-                        level_7 ILIKE '%${searchValue}%' OR
-                        level_8 ILIKE '%${searchValue}%'
-                    )`);
-                }
-                
-                if (levelFilter) {
-                    filters.push(`depth = ${levelFilter}`);
-                }
-                
-                if (minAmount) {
-                    filters.push(`amount >= ${minAmount}`);
-                }
-                
-                if (maxAmount) {
-                    filters.push(`amount <= ${maxAmount}`);
-                }
-                
-                // Add parent hierarchy filter
-                if (currentParent) {
-                    filters.push(`level_0 = '${currentParent.level_0}'`);
-                    if (currentParent.level_1) filters.push(`level_1 = '${currentParent.level_1}'`);
-                    if (currentParent.level_2) filters.push(`level_2 = '${currentParent.level_2}'`);
-                    if (currentParent.level_3) filters.push(`level_3 = '${currentParent.level_3}'`);
-                    if (currentParent.level_4) filters.push(`level_4 = '${currentParent.level_4}'`);
-                    if (currentParent.level_5) filters.push(`level_5 = '${currentParent.level_5}'`);
-                }
-                
-                if (filters.length > 0) {
-                    query += ' AND ' + filters.join(' AND ');
-                }
-                
-                query += ` LIMIT ${limitRows}`;
-                
-                // Execute query with timing
-                const startTime = performance.now();
-                const result = await db.query(query);
-                const endTime = performance.now();
-                const queryTime = ((endTime - startTime) / 1000).toFixed(2);
-                
-                console.log(`Query executed in ${queryTime}ms`);
-                console.log('Query:', query);
-                console.log('Results:', result.length);
-                
-                // Store results for row clicks
-                currentResults = result;
-                
-                // Update breadcrumb
-                updateBreadcrumb();
-                
-                // Display results
-                displayResults(result, query, queryTime);
-                updateStatus('ready', `Showing ${result.length} rows (${queryTime}ms)`);
-                
-            } catch (error) {
-                updateStatus('error', `Query failed: ${error.message}`);
-                console.error('Query error:', error);
-            }
-        }
-        
-        // Display results in table
-        function displayResults(results, query, queryTime) {
-            const container = document.getElementById('duckdb-container');
-            
-            if (results.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 60px; color: #6c757d;">
-                        <div style="font-size: 48px;">🔍</div>
-                        <div style="font-size: 18px; margin-top: 20px;">No results found</div>
-                        <div style="font-size: 14px; margin-top: 10px; color: #856404;">
-                            Try adjusting your filters or search terms
-                        </div>
-                    </div>
-                `;
-                return;
-            }
-            
-            // Create HTML table
-            let html = `
-                <table style="width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed;">
-                    <thead>
-                        <tr style="background: #f8f9fa; position: sticky; top: 0;">
-                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6; cursor: pointer; width: 200px;" onclick="sortBy('path')">Path ↕️</th>
-                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6; cursor: pointer; width: 250px;" onclick="sortBy('value')">Value ↕️</th>
-                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6; cursor: pointer; width: 300px;" onclick="sortBy('description')">Description ↕️</th>
-                            <th style="padding: 12px; text-align: right; border-bottom: 2px solid #dee2e6; cursor: pointer; width: 150px;" onclick="sortBy('amount')">Amount (₱) ↕️</th>
-                            <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6; cursor: pointer; width: 80px;" onclick="sortBy('depth')">Depth ↕️</th>
-                        </tr>
-                    </thead>
-                    <tbody style="max-height: 500px; overflow-y: auto;">
-            `;
-            
-            results.forEach((row, index) => {
-                const path = row.path || '';
-                const value = row.value || '';
-                const description = row.description || '';
-                const amount = row.amount !== null ? row.amount.toLocaleString('en-PH', { minimumFractionDigits: 2 }) : 'N/A';
-                const depth = row.depth || '-';
-                const bgColor = index % 2 === 0 ? '#ffffff' : '#f9fafb';
-                const depthBadge = currentParent && row.depth === currentParent.depth + 1 ? ' 📁' : '';
-                const isLeaf = !row.children || row.children === 0;
-                const leafIndicator = isLeaf && row.path.length < 5 ? '' : '▶';
-                const clickAttr = isLeaf ? `onclick="drillDown(${index})" title="Click to view children"` : `title="This row has no children"`;
-                
-                html += `
-                    <tr style="background: ${bgColor}; ${clickAttr}">
-                        <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${path}">${leafIndicator} ${path}${depthBadge}</td>
-                        <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${value}">${value}</td>
-                        <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${description}">${description}</td>
-                        <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right; font-weight: 500;">${amount}</td>
-                        <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: center;">${depth}</td>
-                    </tr>
-                `;
-            });
-            
-            html += `
-                    </tbody>
-                </table>
-                <div style="padding: 15px; text-align: center; color: #6c757d; font-size: 13px;">
-                    Showing ${results.length} rows
-                </div>
-            `;
-            
-            container.innerHTML = html;
-            document.getElementById('row-count').textContent = `${results.length} rows`;
-        }
-        
-        // Sort functionality
-        let sortColumn = 'path';
-        let sortDirection = 'asc';
-        
-        function sortBy(column) {
-            if (sortColumn === column) {
-                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+            if (!search) {
+                filteredData = tableData.rows;
             } else {
-                sortColumn = column;
-                sortDirection = 'asc';
+                filteredData = tableData.rows.filter(row => {
+                    if (currentColumn) {
+                        const value = String(row[currentColumn] || '').toLowerCase();
+                        return value.includes(search);
+                    } else {
+                        return tableData.columns.some(col => {
+                            const value = String(row[col] || '').toLowerCase();
+                            return value.includes(search);
+                        });
+                    }
+                });
             }
-            runQuery();
-        }
-        
-        // Apply filters
-        function applyFilters() {
-            runQuery();
-        }
-        
-        // Reset filters
-        function resetFilters() {
-            document.getElementById('search-input').value = '';
-            document.getElementById('level-filter').value = '';
-            document.getElementById('min-amount').value = '';
-            document.getElementById('max-amount').value = '';
-            document.getElementById('limit-rows').value = '100';
-            currentParent = null;
-            runQuery();
-        }
-        
-        // Update status bar
-        function updateStatus(type, message) {
-            const statusEl = document.getElementById('status-bar');
-            statusEl.className = `status-bar status-${type}`;
-            const spinner = statusEl.querySelector('.loading-spinner');
-            const text = document.getElementById('status-text');
             
-            if (type === 'loading') {
-                spinner.classList.remove('hidden');
+            // Apply sorting
+            if (currentSort.column) {
+                filteredData.sort((a, b) => {
+                    const aVal = a[currentSort.column] || '';
+                    const bVal = b[currentSort.column] || '';
+                    const comparison = String(aVal).localeCompare(String(bVal));
+                    return currentSort.direction === 'asc' ? comparison : -comparison;
+                });
+            }
+            
+            currentPage = 1;
+            displayData();
+        }
+
+        // Display data
+        function displayData() {
+            const loading = document.getElementById('loading');
+            const table = document.getElementById('dataTable');
+            const errorDiv = document.getElementById('error');
+            
+            loading.style.display = 'none';
+            table.style.display = 'table';
+            errorDiv.style.display = 'none';
+            
+            renderTable();
+            updatePagination();
+            
+            // Update displayed count
+            document.getElementById('displayedRows').textContent = 
+                `${Math.min(filteredData.length, currentLimit).toLocaleString()} / ${filteredData.length.toLocaleString()}`;
+        }
+
+        // Render table
+        function renderTable() {
+            const thead = document.getElementById('tableHead');
+            const tbody = document.getElementById('tableBody');
+            
+            // Render header
+            thead.innerHTML = '';
+            const headerRow = document.createElement('tr');
+            tableData.columns.forEach(col => {
+                const th = document.createElement('th');
+                th.textContent = col;
+                th.dataset.column = col;
+                
+                if (currentSort.column === col) {
+                    th.classList.add(currentSort.direction === 'asc' ? 'sort-asc' : 'sort-desc');
+                }
+                
+                th.addEventListener('click', () => handleSort(col));
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            
+            // Get paginated data
+            const startIndex = (currentPage - 1) * currentLimit;
+            const endIndex = startIndex + currentLimit;
+            const pageData = filteredData.slice(startIndex, endIndex);
+            
+            // Render body
+            tbody.innerHTML = '';
+            pageData.forEach(row => {
+                const tr = document.createElement('tr');
+                tableData.columns.forEach(col => {
+                    const td = document.createElement('td');
+                    const value = row[col];
+                    td.textContent = value !== null && value !== undefined ? value : '';
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Handle sort
+        function handleSort(column) {
+            if (currentSort.column === column) {
+                if (currentSort.direction === 'asc') {
+                    currentSort.direction = 'desc';
+                } else {
+                    currentSort.column = null;
+                    currentSort.direction = null;
+                }
             } else {
-                spinner.classList.add('hidden');
+                currentSort.column = column;
+                currentSort.direction = 'asc';
             }
             
-            text.textContent = message;
-        }
-        
-        // Update breadcrumb
-        function updateBreadcrumb() {
-            const header = document.getElementById('hierarchy-header');
-            const breadcrumb = document.getElementById('breadcrumb');
+            // Re-sort data
+            if (currentSort.column) {
+                filteredData.sort((a, b) => {
+                    const aVal = a[currentSort.column] || '';
+                    const bVal = b[currentSort.column] || '';
+                    const comparison = String(aVal).localeCompare(String(bVal));
+                    return currentSort.direction === 'asc' ? comparison : -comparison;
+                });
+            }
             
-            if (!currentParent) {
-                header.classList.add('hidden');
+            displayData();
+        }
+
+        // Update pagination
+        function updatePagination() {
+            const pagination = document.getElementById('pagination');
+            const totalPages = Math.ceil(filteredData.length / currentLimit);
+            
+            if (totalPages <= 1) {
+                pagination.style.display = 'none';
                 return;
             }
             
-            header.classList.remove('hidden');
+            pagination.style.display = 'flex';
+            document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
             
-            // Build breadcrumb from parent
-            const breadcrumbs = [];
-            if (currentParent.level_0) breadcrumbs.push({ value: currentParent.level_0, depth: 0 });
-            if (currentParent.level_1) breadcrumbs.push({ value: currentParent.level_1, depth: 1 });
-            if (currentParent.level_2) breadcrumbs.push({ value: currentParent.level_2, depth: 2 });
-            if (currentParent.level_3) breadcrumbs.push({ value: currentParent.level_3, depth: 3 });
-            if (currentParent.level_4) breadcrumbs.push({ value: currentParent.level_4, depth: 4 });
-            if (currentParent.level_5) breadcrumbs.push({ value: currentParent.level_5, depth: 5 });
-            
-            // Add "Clear" button
-            breadcrumb.innerHTML = `
-                <button onclick="clearParent()" style="padding: 6px 12px; background: rgba(255,255,255,0.15); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 600; transition: all 0.2s; margin-right: 10px;">
-                    ✕ Clear
-                </button>
-            `;
-            
-            breadcrumbs.forEach((crumb, index) => {
-                const separator = `<span class="breadcrumb-separator">›</span>`;
-                breadcrumb.innerHTML += separator;
-                
-                const isLast = index === breadcrumbs.length - 1;
-                const style = isLast ? 'background: rgba(255,255,255,0.35); font-weight: 600;' : '';
-                
-                breadcrumb.innerHTML += `
-                    <div class="breadcrumb-item" style="${style}"
-                          onclick="navigateToBreadcrumb(${index})"
-                          title="Click to navigate to this level">
-                         ${crumb.value}
-                     </div>
-                `;
-            });
+            document.getElementById('firstPage').disabled = currentPage === 1;
+            document.getElementById('prevPage').disabled = currentPage === 1;
+            document.getElementById('nextPage').disabled = currentPage === totalPages;
+            document.getElementById('lastPage').disabled = currentPage === totalPages;
         }
-        
-        // Drill down into a row's children
-        function drillDown(index) {
-            // Get the row from current results
-            const row = currentResults[index];
-            
-            if (!row) return;
-            
-            // Parse the path to get levels
-            const path = row.path || '';
-            const levels = path.split(' > ').filter(l => l.trim());
-            
-            if (levels.length < 1) return;
-            
-            // Set new parent - drill down one more level
-            currentParent = {
-                level_0: row.level_0 || '',
-                level_1: row.level_1 || '',
-                level_2: row.level_2 || '',
-                level_3: row.level_3 || '',
-                level_4: row.level_4 || '',
-                level_5: row.level_5 || ''
-            };
-            
-            // Re-run query with new parent filter
-            runQuery();
+
+        // Show error
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
         }
-        
-        // Navigate to a specific level in breadcrumb
-        function navigateToBreadcrumb(clickedIndex) {
-            // Get all breadcrumb items
-            const breadcrumbItems = document.querySelectorAll('.breadcrumb-item');
-            
-            // Build new parent up to and including the clicked breadcrumb
-            const newParent = {
-                level_0: '',
-                level_1: '',
-                level_2: '',
-                level_3: '',
-                level_4: '',
-                level_5: ''
-            };
-            
-            // Fill in levels up to and including the clicked breadcrumb
-            for (let i = 0; i <= clickedIndex; i++) {
-                const item = breadcrumbItems[i];
-                const depthClass = item.className.match(/depth-(\d+)/);
-                if (depthClass) {
-                    const depth = parseInt(depthClass[1]);
-                    const value = item.textContent.trim();
-                    if (depth === 0) newParent.level_0 = value;
-                    if (depth === 1) newParent.level_1 = value;
-                    if (depth === 2) newParent.level_2 = value;
-                    if (depth === 3) newParent.level_3 = value;
-                    if (depth === 4) newParent.level_4 = value;
-                    if (depth === 5) newParent.level_5 = value;
-                }
-            }
-            
-            // Update current parent
-            currentParent = newParent;
-            
-            // Re-run query
-            runQuery();
-        }
-        
-        // Clear parent filter
-        function clearParent() {
-            currentParent = null;
-            runQuery();
-        }
-        
-        // Export to CSV
-        async function exportCSV() {
-            if (!db) {
-                alert('Please wait for data to load...');
-                return;
-            }
-            
-            // Get current filtered data
-            const searchValue = document.getElementById('search-input').value.trim();
-            const limitRows = document.getElementById('limit-rows').value;
-            
-            let query = 'SELECT * FROM dpwh_view WHERE level_0 = "."';
-            
-            if (searchValue) {
-                query += ` AND (value ILIKE '%${searchValue}%' OR description ILIKE '%${searchValue}%')`;
-            }
-            
-            query += ` LIMIT ${limitRows}`;
-            
-            updateStatus('loading', 'Exporting data to CSV...');
-            
-            try {
-                const result = await db.query(query);
-                const csv = [
-                    ['Path', 'Value', 'Description', 'Amount', 'Depth'],
-                    ...result.map(r => [
-                        r.path || '',
-                        r.value || '',
-                        r.description || '',
-                        r.amount !== null ? r.amount : '',
-                        r.depth || ''
-                    ])
-                ];
-                
-                const csvContent = csv.map(row => row.join(',')).join('\n');
-                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'dpwh_data_export.csv';
-                a.click();
-                URL.revokeObjectURL(url);
-                
-                updateStatus('ready', `Exported ${result.length} rows to CSV`);
-            } catch (error) {
-                updateStatus('error', `Export failed: ${error.message}`);
-            }
-        }
-        
-        // Expose functions to global scope for HTML onclick handlers
-        window.applyFilters = applyFilters;
-        window.resetFilters = resetFilters;
-        window.sortBy = sortBy;
-        window.drillDown = drillDown;
-        window.navigateToBreadcrumb = navigateToBreadcrumb;
-        window.clearParent = clearParent;
-        window.exportCSV = exportCSV;
-        
-        // Initialize on load
-        window.addEventListener('DOMContentLoaded', async () => {
-            updateStatus('loading', 'Initializing DuckDB WASM...');
-            await initDuckDB();
-            
-            // Load initial data
-            await runQuery();
-            
-            // Set up keyboard shortcuts
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' && document.activeElement.id === 'search-input') {
-                    e.preventDefault();
-                    applyFilters();
-                }
-                if (e.key === 'Escape') {
-                    resetFilters();
-                }
-            });
+
+        // Event listeners
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            currentSearch = document.getElementById('searchInput').value;
+            currentColumn = document.getElementById('columnFilter').value;
+            filterData();
         });
+
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('searchBtn').click();
+            }
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('columnFilter').value = '';
+            document.getElementById('limitFilter').value = '25';
+            currentSearch = '';
+            currentColumn = '';
+            currentLimit = 25;
+            currentSort = { column: null, direction: null };
+            filterData();
+        });
+
+        document.getElementById('limitFilter').addEventListener('change', (e) => {
+            currentLimit = parseInt(e.target.value);
+            currentPage = 1;
+            displayData();
+        });
+
+        document.getElementById('firstPage').addEventListener('click', () => {
+            currentPage = 1;
+            displayData();
+        });
+
+        document.getElementById('prevPage').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayData();
+            }
+        });
+
+        document.getElementById('nextPage').addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredData.length / currentLimit);
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayData();
+            }
+        });
+
+        document.getElementById('lastPage').addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredData.length / currentLimit);
+            currentPage = totalPages;
+            displayData();
+        });
+
+        // Initialize
+        loadData();
     </script>
 </body>
 </html>
