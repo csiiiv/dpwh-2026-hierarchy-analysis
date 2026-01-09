@@ -21,17 +21,23 @@
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 2rem;
+            padding: 0.75rem 2rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1002;
         }
 
         .header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 700;
         }
 
         .header p {
             opacity: 0.9;
+            font-size: 0.85rem;
+            margin: 0.25rem 0 0;
         }
 
         .header a {
@@ -40,11 +46,13 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
+            margin-top: 0;
+            padding: 0.35rem 0.75rem;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 6px;
             transition: background 0.3s;
+            font-size: 0.85rem;
+            margin-left: 1rem;
         }
 
         .header a:hover {
@@ -53,19 +61,22 @@
 
         .controls {
             background: white;
-            padding: 1.5rem 2rem;
+            padding: 0.5rem 2rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             display: flex;
             gap: 1rem;
             align-items: center;
             flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1001;
         }
 
         .btn {
-            padding: 0.75rem 1.5rem;
+            padding: 0.4rem 0.8rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 500;
@@ -219,6 +230,91 @@
             margin: 1rem 0;
         }
 
+        /* Breadcrumb navigation */
+        .breadcrumb {
+            position: sticky;
+            top: 55px;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-bottom: 2px solid #667eea;
+        }
+
+        .breadcrumb-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .breadcrumb-label {
+            font-weight: 600;
+            color: #666;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .breadcrumb-path {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .breadcrumb-root {
+            color: #667eea;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .breadcrumb-separator {
+            color: #999;
+            font-weight: bold;
+            margin: 0 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .breadcrumb-item {
+            color: #333;
+            white-space: normal;
+            word-wrap: break-word;
+            padding: 0.25rem 0.5rem;
+            background: #f0f4ff;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .breadcrumb-item:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .breadcrumb-item.amount {
+            color: #2e7d32;
+            background: #e8f5e9;
+        }
+
+        .breadcrumb-item.amount:hover {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .breadcrumb-empty {
+            color: #999;
+            font-style: italic;
+        }
+
+        .node-header.current-view {
+            background: #fff9c4 !important;
+            border-left: 4px solid #ff9800;
+        }
 
         @media (max-width: 768px) {
             .header h1 {
@@ -243,19 +339,33 @@
                 margin-top: 0.5rem;
                 width: 100%;
             }
+
+            .breadcrumb-container {
+                padding: 0.5rem 1rem;
+            }
+
+            .breadcrumb-label {
+                font-size: 0.875rem;
+            }
+
+            .breadcrumb-item {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>DPWH 2026 GAA Hierarchy Explorer</h1>
-        <p>Explore the hierarchical structure of the DPWH 2026 General Appropriations Act</p>
-        <a href="https://github.com/csiiiv/dpwh-2026-hierarchy-analysis/" target="_blank" rel="noopener noreferrer">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            View on GitHub
-        </a>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <h1>DPWH 2026 GAA Hierarchy Explorer</h1>
+            <p style="margin: 0;">Explore the hierarchical structure of the DPWH 2026 General Appropriations Act</p>
+            <a href="https://github.com/csiiiv/dpwh-2026-hierarchy-analysis/" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+            </a>
+        </div>
     </div>
 
     <div class="controls">
@@ -263,6 +373,16 @@
         <button class="btn btn-secondary" onclick="collapseAll()">Collapse All</button>
         <div class="stats">
             <span id="nodeCount">Nodes: 0</span>
+        </div>
+    </div>
+
+    <!-- Sticky breadcrumb navigation -->
+    <div id="breadcrumb" class="breadcrumb">
+        <div class="breadcrumb-container">
+            <span class="breadcrumb-label">Current Path:</span>
+            <div id="breadcrumbPath" class="breadcrumb-path">
+                <span class="breadcrumb-root">DPWH 2026 GAA</span>
+            </div>
         </div>
     </div>
 
@@ -279,6 +399,10 @@
         let searchTerm = '';
         let searchTimeout = null;
         let fullTreeHTML = null;
+        let nodePathMap = new Map(); // Map node ID to its path
+        let expandedNodes = new Set(); // Track expanded node IDs
+        let currentViewNode = null; // Track the currently visible node
+        let scrollTimeout = null; // Scroll event throttling
 
         // Format number with commas
         function formatNumber(num) {
@@ -290,17 +414,21 @@
         }
 
         // Render a node
-        function renderNode(node, level = 0) {
+        function renderNode(node, level = 0, parentPath = []) {
             nodeCount++;
             const hasChildren = node.children && node.children.length > 0;
             const nodeId = `node-${nodeCount}`;
+
+            // Store the path for this node
+            const currentPath = [...parentPath, { value: node.value, amount: node.amount, nodeId: nodeId }];
+            nodePathMap.set(nodeId, currentPath);
 
             let html = `
                 <div class="tree-node ${!hasChildren ? 'no-children' : ''}" data-node-id="${nodeId}">
                     <div class="node-header ${hasChildren ? '' : 'no-children'}" onclick="toggleNode('${nodeId}')">
                         ${hasChildren ? '<span class="toggle collapsed"></span>' : '<span class="toggle"></span>'}
                         <span class="node-title">${node.value || ''}</span>
-                        ${node.amount !== null && node.amount !== undefined ? 
+                        ${node.amount !== null && node.amount !== undefined ?
                             `<span class="node-amount">₱${formatNumber(node.amount)}</span>` : ''}
                     </div>
             `;
@@ -316,7 +444,7 @@
             if (hasChildren) {
                 html += `<div class="node-content" id="${nodeId}-content">`;
                 node.children.forEach(child => {
-                    html += renderNode(child, level + 1);
+                    html += renderNode(child, level + 1, currentPath);
                 });
                 html += `</div>`;
             }
@@ -332,17 +460,32 @@
 
             const header = document.querySelector(`[data-node-id="${nodeId}"] .node-header`);
             const toggle = header.querySelector('.toggle');
-            
+
             if (content.classList.contains('show')) {
                 content.classList.remove('show');
                 toggle.classList.remove('expanded');
                 toggle.classList.add('collapsed');
                 header.classList.remove('expanded');
+                expandedNodes.delete(nodeId);
             } else {
                 content.classList.add('show');
                 toggle.classList.remove('collapsed');
                 toggle.classList.add('expanded');
                 header.classList.add('expanded');
+                expandedNodes.add(nodeId);
+            }
+        }
+
+        // Scroll to a breadcrumb item
+        function scrollToNode(nodeId) {
+            const header = document.querySelector(`[data-node-id="${nodeId}"] .node-header`);
+            if (header) {
+                header.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Flash the node
+                header.style.background = '#fff9c4';
+                setTimeout(() => {
+                    header.style.background = '';
+                }, 1000);
             }
         }
 
@@ -358,6 +501,14 @@
             document.querySelectorAll('.node-header').forEach(header => {
                 header.classList.add('expanded');
             });
+
+            // Track all nodes as expanded
+            nodePathMap.forEach((_, nodeId) => {
+                const content = document.getElementById(`${nodeId}-content`);
+                if (content) {
+                    expandedNodes.add(nodeId);
+                }
+            });
         }
 
         // Collapse all nodes
@@ -372,42 +523,177 @@
             document.querySelectorAll('.node-header').forEach(header => {
                 header.classList.remove('expanded');
             });
+
+            expandedNodes.clear();
         }
 
         // Render the hierarchy tree
         function renderTree() {
             nodeCount = 0;
             const tree = document.getElementById('tree');
-            
+
             if (!hierarchyData) {
                 tree.innerHTML = '<div class="error">No data loaded</div>';
                 return;
             }
 
+            console.log(`[Breadcrumb] Rendering ${hierarchyData.length} root nodes`);
+
             let html = '';
-            hierarchyData.forEach(root => {
+            hierarchyData.forEach((root, index) => {
                 html += renderNode(root);
             });
-            
+
             tree.innerHTML = html;
-            
+
+            console.log(`[Breadcrumb] Tree rendered with ${nodeCount} total nodes`);
+
             // Update stats
             document.getElementById('nodeCount').textContent = `Nodes: ${nodeCount}`;
+
+            // Initialize breadcrumb with first visible node
+            setTimeout(() => {
+                updateBreadcrumbForCurrentView();
+            }, 100);
+
+            // Add scroll listener to window (not tree, since tree doesn't have fixed height)
+            window.addEventListener('scroll', () => {
+                console.log(`[Breadcrumb] Scroll event detected`);
+
+                // Debounce scroll events
+                if (scrollTimeout) {
+                    return;
+                }
+
+                scrollTimeout = setTimeout(() => {
+                    updateBreadcrumbForCurrentView();
+                    scrollTimeout = null;
+                }, 50);
+            });
+
+            console.log(`[Breadcrumb] Scroll listener attached to window`);
+        }
+
+        // Update breadcrumb for current scroll position
+        function updateBreadcrumbForCurrentView() {
+            console.log(`[Breadcrumb] updateBreadcrumbForCurrentView called`);
+
+            // Get all headers in DOM order
+            const allHeaders = document.querySelectorAll('.node-header');
+            const viewportTop = 0;
+            const viewportBottom = window.innerHeight;
+            const stickyOffset = 120; // Account for header + controls + breadcrumb
+
+            console.log(`[Breadcrumb] Checking ${allHeaders.length} headers for first visible one`);
+            console.log(`[Breadcrumb] Viewport: ${viewportTop}px to ${viewportBottom}px, sticky offset: ${stickyOffset}px`);
+
+            if (allHeaders.length === 0) {
+                console.error(`[Breadcrumb] No headers found!`);
+                return;
+            }
+
+            // Find first header that's actually visible in viewport (below sticky elements)
+            let headerElement = null;
+            let headerNodeId = null;
+            let nodeName = '';
+            let topmostPosition = Infinity;
+
+            for (const header of allHeaders) {
+                const rect = header.getBoundingClientRect();
+                const headerTop = rect.top;
+
+                // Header is visible if:
+                // 1. Its top is below the sticky elements (stickyOffset)
+                // 2. Its top is within the viewport (not scrolled past)
+                // 3. It's the topmost one we've seen so far
+                if (headerTop >= stickyOffset && headerTop < viewportBottom) {
+                    if (headerTop < topmostPosition) {
+                        topmostPosition = headerTop;
+                        headerElement = header;
+                        nodeName = header.querySelector('.node-title')?.textContent || '';
+
+                        // Get parent tree-node to get the ID
+                        const treeNode = header.closest('.tree-node');
+                        if (treeNode) {
+                            headerNodeId = treeNode.getAttribute('data-node-id');
+                        }
+
+                        console.log(`[Breadcrumb] Found visible header: "${nodeName}" at ${headerTop.toFixed(0)}px (id: ${headerNodeId})`);
+                    }
+                }
+            }
+
+            if (!headerElement) {
+                console.log(`[Breadcrumb] No visible header found in viewport (below ${stickyOffset}px)`);
+                return;
+            }
+
+            // Only update if different from current
+            if (headerNodeId === currentViewNode) {
+                console.log(`[Breadcrumb] No update needed - still on ${nodeName} (${headerNodeId})`);
+                return;
+            }
+
+            console.log(`[Breadcrumb] Updating from ${currentViewNode} to ${headerNodeId}: ${nodeName}`);
+
+            // Remove current-view class from previous node
+            if (currentViewNode) {
+                const prevHeader = document.querySelector(`[data-node-id="${currentViewNode}"] .node-header`);
+                if (prevHeader) {
+                    prevHeader.classList.remove('current-view');
+                }
+            }
+
+            // Add current-view class to new node
+            headerElement.classList.add('current-view');
+
+            // Update breadcrumb
+            const path = nodePathMap.get(headerNodeId);
+            if (path && path.length > 0) {
+                console.log(`[Breadcrumb] Updating breadcrumb with ${path.length} items: ${path.map(p => p.value).join(' > ')}`);
+                updateBreadcrumbFromPath(path);
+                currentViewNode = headerNodeId;
+            } else {
+                console.error(`[Breadcrumb] No path found for node ${headerNodeId}`);
+            }
+        }
+
+        // Update breadcrumb from a specific path
+        function updateBreadcrumbFromPath(path) {
+            const breadcrumbPath = document.getElementById('breadcrumbPath');
+
+            // Build breadcrumb HTML
+            let html = '<span class="breadcrumb-root">DPWH 2026 GAA</span>';
+            path.forEach((item, index) => {
+                html += '<span class="breadcrumb-separator">›</span>';
+                if (item.amount !== null && item.amount !== undefined) {
+                    html += `<span class="breadcrumb-item amount" title="${item.value}: ₱${formatNumber(item.amount)}" onclick="scrollToNode('${item.nodeId}')">${item.value}</span>`;
+                } else {
+                    html += `<span class="breadcrumb-item" title="${item.value}" onclick="scrollToNode('${item.nodeId}')">${item.value}</span>`;
+                }
+            });
+
+            breadcrumbPath.innerHTML = html;
+            console.log(`[Breadcrumb] Updated breadcrumb: ${path.map(p => p.value).join(' > ')}`);
         }
 
         // Load JSON data
         async function loadData() {
+            console.log(`[Breadcrumb] loadData() called`);
             try {
                 // Use relative path that works with GitHub Pages
                 const jsonPath = './data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy.json';
+                console.log(`[Breadcrumb] Fetching data from: ${jsonPath}`);
                 const response = await fetch(jsonPath);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 hierarchyData = await response.json();
+                console.log(`[Breadcrumb] Data loaded successfully, ${hierarchyData.length} root nodes`);
                 renderTree();
             } catch (error) {
-                document.getElementById('tree').innerHTML = 
+                console.error(`[Breadcrumb] Error loading data:`, error);
+                document.getElementById('tree').innerHTML =
                     `<div class="error">Error loading data: ${error.message}<br>
                     Make sure the JSON file is in the data directory.</div>`;
                 console.error('Error loading data:', error);
@@ -415,6 +701,7 @@
         }
 
         // Load data on page load
+        console.log(`[Breadcrumb] Page loaded, starting to load data...`);
         loadData();
     </script>
 </body>
