@@ -281,6 +281,8 @@
             align-items: stretch;
             gap: 0.5rem;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
         }
 
         .breadcrumb-label {
@@ -292,11 +294,11 @@
 
         .breadcrumb-path {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             align-items: center;
             gap: 0.5rem;
             flex: 1;
-            min-width: 0;
+            min-width: max-content;
         }
 
         .breadcrumb-root {
@@ -766,7 +768,8 @@
             const breadcrumb = document.querySelector('.breadcrumb');
 
             if (header && controls && breadcrumb) {
-                const headerHeight = header.offsetHeight;
+                // If header is hidden on mobile, use 0 as header height
+                const headerHeight = header.classList.contains('hidden-mobile') ? 0 : header.offsetHeight;
                 const controlsHeight = controls.offsetHeight;
 
                 controls.style.top = `${headerHeight}px`;
