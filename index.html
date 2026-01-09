@@ -261,7 +261,7 @@
         /* Breadcrumb navigation */
         .breadcrumb {
             position: sticky;
-            top: 55px;
+            top: 0;
             z-index: 1000;
             background: white;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -759,20 +759,18 @@
             tree.classList.toggle('mobile-hidden');
         }
 
-        // Update sticky element positions for mobile
+        // Update sticky element positions for all devices
         function updateStickyPositions() {
-            if (window.innerWidth <= 768) {
-                const header = document.querySelector('.header');
-                const controls = document.querySelector('.controls');
-                const breadcrumb = document.querySelector('.breadcrumb');
+            const header = document.querySelector('.header');
+            const controls = document.querySelector('.controls');
+            const breadcrumb = document.querySelector('.breadcrumb');
 
-                if (header && controls && breadcrumb) {
-                    const headerHeight = header.classList.contains('hidden-mobile') ? 0 : header.offsetHeight;
-                    const controlsHeight = controls.offsetHeight;
+            if (header && controls && breadcrumb) {
+                const headerHeight = header.offsetHeight;
+                const controlsHeight = controls.offsetHeight;
 
-                    controls.style.top = `${headerHeight}px`;
-                    breadcrumb.style.top = `${headerHeight + controlsHeight}px`;
-                }
+                controls.style.top = `${headerHeight}px`;
+                breadcrumb.style.top = `${headerHeight + controlsHeight}px`;
             }
         }
 
@@ -1061,6 +1059,7 @@
         // Load data on page load
         console.log(`[Breadcrumb] Page loaded, starting to load data...`);
         updateMobileState();
+        updateStickyPositions();
         loadData();
     </script>
 </body>
