@@ -2,6 +2,7 @@
 """
 Flatten hierarchy to Parquet format - Option 1: Leaf Nodes Only
 Creates one row per leaf node with all ancestor values in separate columns.
+Uses hierarchical_tree_with_labels_and_amounts.json as input.
 """
 
 import json
@@ -11,7 +12,9 @@ from typing import Dict, List, Optional
 def load_json(json_path: Path) -> List[Dict]:
     """Load hierarchical JSON."""
     with open(json_path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+        data = json.load(f)
+        # The new JSON structure has 'hierarchy_tree' as the root key
+        return data.get('hierarchy_tree', [])
 
 def looks_like_amount(value: str) -> bool:
     """Check if a string looks like an amount."""
@@ -35,13 +38,14 @@ def find_leaves_and_paths(nodes: List[Dict]) -> List[Dict]:
     def traverse(node: Dict, current_path: List[str]):
         """Recursively traverse nodes to find leaves."""
         children = node.get('children', [])
-        value = node.get('value', '').strip()
+        label = node.get('label', '').strip()
         amount = node.get('amount')
+        row = node.get('row')
         description = node.get('description', '')
-        
+
         if not children:
             # This is a leaf node
-            path = current_path + [value]
+            path = current_path + [label]
             results.append({
                 'path': ' > '.join(path),
                 'level_0': '.',
@@ -56,7 +60,8 @@ def find_leaves_and_paths(nodes: List[Dict]) -> List[Dict]:
                 'level_9': path[8] if len(path) > 8 else '',
                 'level_10': path[9] if len(path) > 9 else '',
                 'level_11': path[10] if len(path) > 10 else '',
-                'value': value,
+                'label': label,
+                'row': row,
                 'description': description,
                 'amount': amount,
                 'depth': len(path)
@@ -64,7 +69,7 @@ def find_leaves_and_paths(nodes: List[Dict]) -> List[Dict]:
         else:
             # Recurse into children
             for child in children:
-                traverse(child, current_path + [value])
+                traverse(child, current_path + [label])
     
     # Start traversal from root nodes
     for node in nodes:
@@ -77,7 +82,7 @@ def main():
     script_dir = Path(__file__).parent
     data_dir = script_dir.parent / "data"
     
-    hierarchy_file = data_dir / "FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy.json"
+    hierarchy_file = data_dir / "hierarchical_tree_with_labels_and_amounts.json"
     
     print("=" * 80)
     print("FLATTENING HIERARCHY TO PARQUET - OPTION 1: LEAF NODES ONLY")
@@ -123,13 +128,14 @@ def main():
     for i, row in enumerate(leaf_rows[:5], 1):
         print(f"\nRow {i}:")
         print(f"  Path: {row['path'][:100]}")
-        print(f"  Value: {row['value'][:60]}")
+        print(f"  Label: {row['label'][:60]}")
+        print(f"  Row Number: {row['row'] if row['row'] else 'N/A'}")
         print(f"  Description: {row['description'][:60] if row['description'] else 'N/A'}")
         print(f"  Amount: ₱{row['amount']:,.2f}" if row['amount'] else "N/A")
         print(f"  Depth: {row['depth']}")
     
     # Save to Parquet
-    parquet_file = data_dir / "FY 2026_DPWH DETAILS ENROLLED COPY (Final)_leaf_nodes.parquet"
+    parquet_file = data_dir / "hierarchical_tree_leaf_nodes.parquet"
     
     print("\n" + "=" * 80)
     print(f"Saving to Parquet: {parquet_file}")
@@ -152,7 +158,8 @@ def main():
             'level_9': [row['level_9'] for row in leaf_rows],
             'level_10': [row['level_10'] for row in leaf_rows],
             'level_11': [row['level_11'] for row in leaf_rows],
-            'value': [row['value'] for row in leaf_rows],
+            'label': [row['label'] for row in leaf_rows],
+            'row': [row['row'] for row in leaf_rows],
             'description': [row['description'] for row in leaf_rows],
             'amount': [float(row['amount']) if row['amount'] is not None else None for row in leaf_rows],
             'depth': [row['depth'] for row in leaf_rows],
@@ -177,7 +184,7 @@ def main():
         return
     
     # Also save to CSV for compatibility
-    csv_file = data_dir / "FY 2026_DPWH DETAILS ENROLLED COPY (Final)_leaf_nodes.csv"
+    csv_file = data_dir / "hierarchical_tree_leaf_nodes.csv"
     print(f"\nAlso saving to CSV: {csv_file}")
     
     import csv as csv_module
@@ -185,7 +192,7 @@ def main():
         fieldnames = [
             'level_0', 'level_1', 'level_2', 'level_3', 'level_4',
             'level_5', 'level_6', 'level_7', 'level_8', 'level_9', 'level_10', 'level_11',
-            'value', 'description', 'amount', 'depth', 'path'
+            'label', 'row', 'description', 'amount', 'depth', 'path'
         ]
         writer = csv_module.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()

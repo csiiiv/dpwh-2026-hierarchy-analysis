@@ -218,6 +218,17 @@
             font-size: 1rem;
         }
 
+        .node-row {
+            margin-left: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background: #e3f2fd;
+            color: #1976d2;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
         .node-amount {
             margin-left: auto;
             padding: 0.25rem 0.75rem;
@@ -494,6 +505,11 @@
                 word-wrap: break-word; /* Allow text to wrap instead of truncate */
             }
 
+            .node-row {
+                font-size: 0.7rem;
+                padding: 0.15rem 0.35rem;
+            }
+
             .node-amount {
                 font-size: 0.8rem;
                 padding: 0.2rem 0.5rem;
@@ -621,26 +637,19 @@
             const nodeId = `node-${nodeCount}`;
 
             // Store the path for this node
-            const currentPath = [...parentPath, { value: node.value, amount: node.amount, nodeId: nodeId }];
+            const currentPath = [...parentPath, { value: node.label || '', amount: node.amount, nodeId: nodeId }];
             nodePathMap.set(nodeId, currentPath);
 
             let html = `
                 <div class="tree-node ${!hasChildren ? 'no-children' : ''}" data-node-id="${nodeId}">
                     <div class="node-header ${hasChildren ? '' : 'no-children'}" onclick="toggleNode('${nodeId}')">
                         ${hasChildren ? '<span class="toggle collapsed"></span>' : '<span class="toggle"></span>'}
-                        <span class="node-title">${node.value || ''}</span>
-                        ${node.amount !== null && node.amount !== undefined ?
+                        <span class="node-title">${node.label || ''}</span>
+                        ${node.row ? `<span class="node-row">Row ${node.row}</span>` : ''}
+                        ${node.amount !== null && node.amount !== undefined && node.amount > 0 ?
                             `<span class="node-amount">₱${formatNumber(node.amount)}</span>` : ''}
                     </div>
             `;
-
-            if (node.description) {
-                html += `
-                    <div class="node-description">
-                        ${node.description}
-                    </div>
-                `;
-            }
 
             if (hasChildren) {
                 html += `<div class="node-content" id="${nodeId}-content">`;
@@ -829,7 +838,7 @@
             console.log(`[Breadcrumb] Tree rendered with ${nodeCount} total nodes`);
 
             // Update stats
-            document.getElementById('nodeCount').textContent = `Nodes: ${nodeCount}`;
+            document.getElementById('nodeCount').textContent = `Nodes: ${nodeCount.toLocaleString()}`;
 
             // Update sticky positions for mobile
             updateStickyPositions();
@@ -1041,13 +1050,15 @@
             console.log(`[Breadcrumb] loadData() called`);
             try {
                 // Use relative path that works with GitHub Pages
-                const jsonPath = './data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_hierarchy.json';
+                const jsonPath = './data/hierarchical_tree_with_labels_and_amounts.json';
                 console.log(`[Breadcrumb] Fetching data from: ${jsonPath}`);
                 const response = await fetch(jsonPath);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                hierarchyData = await response.json();
+                const data = await response.json();
+                // The new JSON structure has hierarchy_tree as the root key
+                hierarchyData = data.hierarchy_tree || [];
                 console.log(`[Breadcrumb] Data loaded successfully, ${hierarchyData.length} root nodes`);
                 renderTree();
             } catch (error) {

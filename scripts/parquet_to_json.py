@@ -1,7 +1,7 @@
 import pyarrow.parquet as pq
 import json
 
-parquet_path = '/home/temp/_CODE/DPWH_2026_GAA/data/FY 2026_DPWH DETAILS ENROLLED COPY (Final)_leaf_nodes.parquet'
+parquet_path = '/home/temp/_CODE/DPWH_2026_GAA/data/hierarchical_tree_leaf_nodes.parquet'
 output_path = '/home/temp/_CODE/DPWH_2026_GAA/data/leaf_nodes.json'
 
 print('Reading parquet file...')
